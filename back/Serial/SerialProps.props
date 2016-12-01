@@ -3,8 +3,8 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>D:\zhu-ty\原棉\project\back\Serial\Includes;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\zhu-ty\原棉\project\back\Serial\Libraries;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Includes;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Libraries;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
