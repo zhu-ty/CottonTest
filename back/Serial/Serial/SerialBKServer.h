@@ -7,7 +7,7 @@
 #include<thread>
 #include<mutex>
 #include<iostream>
-
+#include"DataModel.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ using namespace std;
 class SerialBKServer
 {
 public:
-	SerialBKServer(shared_ptr<CMvGevSource> camera, shared_ptr<mutex> mtx);
+	SerialBKServer(shared_ptr<CMvGevSource> camera, shared_ptr<mutex> mtx, shared_ptr<RawDataPack> rdp);
 	~SerialBKServer();
 	const int port = 986;
 
@@ -32,6 +32,7 @@ private:
 	shared_ptr<mutex> _mtx;
 	//shared_ptr<int> _x, _y;
 	shared_ptr<CMvGevSource> _camera;
+	shared_ptr<RawDataPack> _rdp;
 
 	void ListenThread();
 	void CommunicateThread(LPVOID lparam);

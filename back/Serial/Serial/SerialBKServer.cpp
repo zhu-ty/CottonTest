@@ -1,10 +1,11 @@
 #include "SerialBKServer.h"
 
 
-SerialBKServer::SerialBKServer(shared_ptr<CMvGevSource> camera, shared_ptr<mutex> mtx)
+SerialBKServer::SerialBKServer(shared_ptr<CMvGevSource> camera, shared_ptr<mutex> mtx, shared_ptr<RawDataPack> rdp)
 {
 	_camera = camera;
 	_mtx = mtx;
+	_rdp = rdp;
 }
 
 SerialBKServer::~SerialBKServer()
@@ -90,7 +91,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 		int byte_rev;
 		char buffer[DATA_LEN] = { 0 };
 		byte_rev = recv(*s, buffer, DATA_LEN, 0);
-		if (buffer[1] == 'E' && buffer[2] == 'T' && buffer[3] == 'X')
+		if (buffer[3] == 'X')
 		{
 			printf("[Event] Received:\n");
 			printf("%c%c%c%c 0x%08X 0x%08X 0x%08X\n",
@@ -107,7 +108,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 			unsigned int num3;
 			//TODO:确认数据格式！
 			int suc;
-			if (buffer[0] == 'G')
+			if (buffer[0] == 'G' && buffer[1] == 'E' && buffer[2] == 'T')
 			{
 				suc = _camera->mSerial->GetRegValue(0, ByteToint(buffer + 4), num3);
 				char buffer_tmp2[4];
@@ -118,7 +119,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 				buffer_tmp[2] = buffer_tmp2[2];
 				buffer_tmp[3] = buffer_tmp2[3];
 			}
-			else if (buffer[0] == 'S')
+			else if (buffer[0] == 'S' && buffer[1] == 'E' && buffer[2] == 'T')
 			{
 				char buffer_tmp2[4];
 				//不颠倒
@@ -129,6 +130,11 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 				num3 = ByteToint(buffer_tmp2);
 				suc = _camera->mSerial->SetRegValue(0, ByteToint(buffer + 4), num3);
 				memcpy(buffer_tmp, buffer + 8, 4);
+			}
+			else if (buffer[0] == 'R' && buffer[1] == 'A' && buffer[2] == 'W')
+			{
+				suc = -1;
+				memcpy(buffer_send + 4, _rdp->data, min(DATA_LEN, RAW_DATA_LENTH) - 4);
 			}
 			if (suc == 0)
 			{

@@ -119,14 +119,14 @@ namespace CottonTestCore
             public const double OFFSET2 = 0;
             public const double AMP2 = 6;
             public const double OFFSET3 = 0;
-            //public const double AMP3 = 16;
             public const double AMP3_R = 150;
             public const double AMP3_RL_MAX = 10;
+            public const int AMP3_RL_STEP_MAX = 16;
             public const double SPLIT_RATIO = 0.5;
 
             public static double cal(long ad_output, double amp3_rl = 10)
             {
-                if (amp3_rl <= 0 || ad_output >= AD_MAX)
+                if (amp3_rl <= 0 || ad_output >= AD_MAX || amp3_rl >= AMP3_RL_MAX)
                     return UNDEF;
                 double ad_input = (double)ad_output / AD_MAX * VREF_AD;
                 double v3_in = ad_input / SPLIT_RATIO / ((AMP3_R + amp3_rl) / amp3_rl);
@@ -137,7 +137,9 @@ namespace CottonTestCore
             }
         }
 
-
+        /// <summary>
+        /// 获取当前连接状态
+        /// </summary>
         public bool connected
         {
             get
@@ -146,6 +148,12 @@ namespace CottonTestCore
             }
         }
 
+        /// <summary>
+        /// 连接服务器
+        /// </summary>
+        /// <param name="ip_address"></param>
+        /// <param name="port"></param>
+        /// <returns></returns>
         public bool connect(string ip_address, int port = 986)
         {
             return c.connect(System.Net.IPAddress.Parse(ip_address), port);
@@ -165,8 +173,8 @@ namespace CottonTestCore
             List<byte[]> to_send = new List<byte[]>();
             to_send.Add(new byte[] { (read)?(byte)'G':(byte)'S', (byte)'E', (byte)'T', (byte)'X' });
             to_send.Add(BitConverter.GetBytes(address));
-            to_send.Add(BitConverter.GetBytes(address));
             to_send.Add(BitConverter.GetBytes((read) ? 0 : value));
+            to_send.Add(BitConverter.GetBytes(0));
             var re = c.send_and_receive_sync(Client.byte_connect(to_send));
             if (BitConverter.ToUInt32(re.data, 4) == 0)
                 throw new Exception("读写寄存器失败");
@@ -236,7 +244,8 @@ namespace CottonTestCore
         /// <param name="value">当前阻值位阶</param>
         /// <param name="MAX_VALUE">最大阻值位阶</param>
         /// <returns></returns>
-        public uint GetSetRisistor(int num, bool set = false, int value = 16, int MAX_VALUE = 16)
+        public uint GetSetRisistor(int num, bool set = false,
+            int value = PHOTODIODE.AMP3_RL_STEP_MAX, int MAX_VALUE = PHOTODIODE.AMP3_RL_STEP_MAX)
         {
             if (!connected)
                 throw new Exception("服务器未连接");
@@ -308,6 +317,31 @@ namespace CottonTestCore
             else
                 re = WriteReadReg(address);
             return (BitConverter.ToUInt32(re.data, 8) != 0);
+        }
+
+        /// <summary>
+        /// 获取传感器当前输入
+        /// </summary>
+        /// <param name="cal">是否进行电压反算</param>
+        /// <returns></returns>
+        public KeyValuePair<double, double> GetData(bool cal = true, double r = PHOTODIODE.AMP3_RL_MAX)
+        {
+            if (!connected)
+                throw new Exception("服务器未连接");
+            List<byte[]> to_send = new List<byte[]>();
+            to_send.Add(new byte[] { (byte)'R', (byte)'A', (byte)'W', (byte)'X' });
+            to_send.Add(BitConverter.GetBytes(0));
+            to_send.Add(BitConverter.GetBytes(0));
+            to_send.Add(BitConverter.GetBytes(0));
+            var re = c.send_and_receive_sync(Client.byte_connect(to_send));
+            print_rev(re);
+            //请注意：此处没使用另外两对数据
+            uint x1 = BitConverter.ToUInt16(re.data, 4);
+            uint x2 = BitConverter.ToUInt16(re.data, 6);
+            if (!cal)
+                return new KeyValuePair<double, double>(x1, x2);
+            else
+                return new KeyValuePair<double, double>(PHOTODIODE.cal(x1, r), PHOTODIODE.cal(x2, r));
         }
 
         Client c = new Client();

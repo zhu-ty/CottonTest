@@ -45,6 +45,16 @@ namespace CottonTestCore
                         var rev = c.send_and_receive_sync(Client.byte_connect(to_send));
                         print_rev(rev);
                     }
+                    if (split[0] == "gx")
+                    {
+                        List<byte[]> to_send = new List<byte[]>();
+                        to_send.Add(new byte[] { (byte)'R', (byte)'A', (byte)'W', (byte)'X' });
+                        to_send.Add(BitConverter.GetBytes(0));
+                        to_send.Add(BitConverter.GetBytes(0));
+                        to_send.Add(BitConverter.GetBytes(0));
+                        var rev = c.send_and_receive_sync(Client.byte_connect(to_send));
+                        print_rev(rev);
+                    }
                 }
                 catch (Exception e)
                 {
