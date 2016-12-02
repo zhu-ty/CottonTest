@@ -100,6 +100,43 @@ namespace CottonTestCore
             public DateTime time;
         }
 
+        public bool connected
+        {
+            get
+            {
+                if (socket == null)
+                    return false;
+                bool connectState = true;
+                bool blockingState = socket.Blocking;
+                try
+                {
+                    byte[] tmp = new byte[1];
+
+                    socket.Blocking = false;
+                    socket.Send(tmp, 0, 0);
+                    connectState = true;
+                }
+                catch (SocketException e)
+                {
+                    // 10035 == WSAEWOULDBLOCK
+                    if (e.NativeErrorCode.Equals(10035))
+                    {
+                        connectState = true;
+                    }
+                    else
+                    {
+                        connectState = false;
+                    }
+                }
+                finally
+                {
+                    socket.Blocking = blockingState;
+                }
+
+                return connectState;
+            }
+        }
+
         private Socket socket;
         
     }

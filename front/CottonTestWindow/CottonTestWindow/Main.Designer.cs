@@ -93,6 +93,7 @@
             // TextConsole
             // 
             this.TextConsole.Location = new System.Drawing.Point(12, 28);
+            this.TextConsole.MaxLength = 2147483647;
             this.TextConsole.Multiline = true;
             this.TextConsole.Name = "TextConsole";
             this.TextConsole.ReadOnly = true;
@@ -113,6 +114,7 @@
             // 
             this.TextMulti1.Location = new System.Drawing.Point(530, 73);
             this.TextMulti1.Name = "TextMulti1";
+            this.TextMulti1.ReadOnly = true;
             this.TextMulti1.Size = new System.Drawing.Size(130, 22);
             this.TextMulti1.TabIndex = 3;
             // 
@@ -138,8 +140,10 @@
             // 
             this.Text12AD1.Location = new System.Drawing.Point(743, 73);
             this.Text12AD1.Name = "Text12AD1";
+            this.Text12AD1.ReadOnly = true;
             this.Text12AD1.Size = new System.Drawing.Size(130, 22);
             this.Text12AD1.TabIndex = 5;
+            this.Text12AD1.Text = "不可控";
             // 
             // label5
             // 
@@ -180,8 +184,10 @@
             // 
             this.TextPWM1.Location = new System.Drawing.Point(530, 95);
             this.TextPWM1.Name = "TextPWM1";
+            this.TextPWM1.ReadOnly = true;
             this.TextPWM1.Size = new System.Drawing.Size(130, 22);
             this.TextPWM1.TabIndex = 8;
+            this.TextPWM1.Text = "不可控";
             // 
             // ButtonWrite1
             // 
@@ -269,8 +275,10 @@
             // 
             this.TextPWM2.Location = new System.Drawing.Point(530, 237);
             this.TextPWM2.Name = "TextPWM2";
+            this.TextPWM2.ReadOnly = true;
             this.TextPWM2.Size = new System.Drawing.Size(130, 22);
             this.TextPWM2.TabIndex = 20;
+            this.TextPWM2.Text = "不可控";
             // 
             // label10
             // 
@@ -294,8 +302,10 @@
             // 
             this.Text12AD2.Location = new System.Drawing.Point(743, 215);
             this.Text12AD2.Name = "Text12AD2";
+            this.Text12AD2.ReadOnly = true;
             this.Text12AD2.Size = new System.Drawing.Size(130, 22);
             this.Text12AD2.TabIndex = 17;
+            this.Text12AD2.Text = "不可控";
             // 
             // label12
             // 
@@ -310,6 +320,7 @@
             // 
             this.TextMulti2.Location = new System.Drawing.Point(530, 215);
             this.TextMulti2.Name = "TextMulti2";
+            this.TextMulti2.ReadOnly = true;
             this.TextMulti2.Size = new System.Drawing.Size(130, 22);
             this.TextMulti2.TabIndex = 15;
             // 
@@ -449,6 +460,7 @@
             this.TextIP.Name = "TextIP";
             this.TextIP.Size = new System.Drawing.Size(130, 22);
             this.TextIP.TabIndex = 41;
+            this.TextIP.Text = "127.0.0.1";
             // 
             // label23
             // 
@@ -465,6 +477,7 @@
             this.TextPort.Name = "TextPort";
             this.TextPort.Size = new System.Drawing.Size(130, 22);
             this.TextPort.TabIndex = 43;
+            this.TextPort.Text = "986";
             // 
             // label24
             // 

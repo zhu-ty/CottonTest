@@ -103,30 +103,38 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 			buffer_send[1] = 'E';
 			buffer_send[2] = 'T';
 			buffer_send[3] = 'X';
-			memcpy(buffer_send + 4, buffer + 4, 4);
+			
 			unsigned int num3;
+			//TODO:确认数据格式！
+			int suc;
 			if (buffer[0] == 'G')
 			{
-				_camera->mSerial->GetRegValue(0, ByteToint(buffer + 4), num3);
+				suc = _camera->mSerial->GetRegValue(0, ByteToint(buffer + 4), num3);
 				char buffer_tmp2[4];
 				intToByte(num3, buffer_tmp2);
-				buffer_tmp[0] = buffer_tmp2[3];
-				buffer_tmp[1] = buffer_tmp2[2];
-				buffer_tmp[2] = buffer_tmp2[1];
-				buffer_tmp[3] = buffer_tmp2[0];
+				//不颠倒
+				buffer_tmp[0] = buffer_tmp2[0];
+				buffer_tmp[1] = buffer_tmp2[1];
+				buffer_tmp[2] = buffer_tmp2[2];
+				buffer_tmp[3] = buffer_tmp2[3];
 			}
 			else if (buffer[0] == 'S')
 			{
 				char buffer_tmp2[4];
-				buffer_tmp2[0] = buffer[8 + 3];
-				buffer_tmp2[1] = buffer[8 + 2];
-				buffer_tmp2[2] = buffer[8 + 1];
-				buffer_tmp2[3] = buffer[8 + 0];
+				//不颠倒
+				buffer_tmp2[0] = buffer[8 + 0];
+				buffer_tmp2[1] = buffer[8 + 1];
+				buffer_tmp2[2] = buffer[8 + 2];
+				buffer_tmp2[3] = buffer[8 + 3];
 				num3 = ByteToint(buffer_tmp2);
-				_camera->mSerial->SetRegValue(0, ByteToint(buffer + 4), num3);
+				suc = _camera->mSerial->SetRegValue(0, ByteToint(buffer + 4), num3);
 				memcpy(buffer_tmp, buffer + 8, 4);
 			}
-			memcpy(buffer_send + 8, buffer_tmp, 4);
+			if (suc == 0)
+			{
+				memcpy(buffer_send + 4, buffer + 4, 4);
+				memcpy(buffer_send + 8, buffer_tmp, 4);
+			}
 			_mtx->unlock();
 			send(*s, buffer_send, DATA_LEN, 0);
 			printf("[Event] Sent:\n");
