@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CottonTestCore
 {
-    class InterfaceCore
+    public class InterfaceCore
     {
         public const double UNDEF = 9999999;
         public static class TEMPERATUE
@@ -324,7 +324,7 @@ namespace CottonTestCore
         /// </summary>
         /// <param name="cal">是否进行电压反算</param>
         /// <returns></returns>
-        public KeyValuePair<double, double> GetData(bool cal = true, double r = PHOTODIODE.AMP3_RL_MAX)
+        public KeyValuePair<double, double> GetData(bool cal = true, double r1 = PHOTODIODE.AMP3_RL_MAX, double r2 = PHOTODIODE.AMP3_RL_MAX)
         {
             if (!connected)
                 throw new Exception("服务器未连接");
@@ -341,7 +341,7 @@ namespace CottonTestCore
             if (!cal)
                 return new KeyValuePair<double, double>(x1, x2);
             else
-                return new KeyValuePair<double, double>(PHOTODIODE.cal(x1, r), PHOTODIODE.cal(x2, r));
+                return new KeyValuePair<double, double>(PHOTODIODE.cal(x1, r1), PHOTODIODE.cal(x2, r2));
         }
 
         Client c = new Client();

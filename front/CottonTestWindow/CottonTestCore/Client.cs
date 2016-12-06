@@ -10,7 +10,7 @@ using System.IO;
 
 namespace CottonTestCore
 {
-    class Client
+    public class Client
     {
         public static byte[] byte_connect(List<byte[]> btlist)
         {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.TextConsole = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -79,6 +80,9 @@
             this.TextFre = new System.Windows.Forms.TextBox();
             this.ButtonConnect = new System.Windows.Forms.Button();
             this.ButtonStartStop = new System.Windows.Forms.Button();
+            this.TimerData = new System.Windows.Forms.Timer(this.components);
+            this.TimerTemperature = new System.Windows.Forms.Timer(this.components);
+            this.buttonReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -112,10 +116,10 @@
             // 
             // TextMulti1
             // 
-            this.TextMulti1.Location = new System.Drawing.Point(530, 73);
+            this.TextMulti1.AccessibleDescription = "";
+            this.TextMulti1.Location = new System.Drawing.Point(578, 73);
             this.TextMulti1.Name = "TextMulti1";
-            this.TextMulti1.ReadOnly = true;
-            this.TextMulti1.Size = new System.Drawing.Size(130, 22);
+            this.TextMulti1.Size = new System.Drawing.Size(82, 22);
             this.TextMulti1.TabIndex = 3;
             // 
             // label3
@@ -123,9 +127,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(468, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 16);
+            this.label3.Size = new System.Drawing.Size(104, 16);
             this.label3.TabIndex = 4;
-            this.label3.Text = "运放倍数";
+            this.label3.Text = "可变运放电阻等级";
             // 
             // label4
             // 
@@ -197,6 +201,7 @@
             this.ButtonWrite1.TabIndex = 12;
             this.ButtonWrite1.Text = "写入";
             this.ButtonWrite1.UseVisualStyleBackColor = true;
+            this.ButtonWrite1.Click += new System.EventHandler(this.ButtonWrite1_Click);
             // 
             // ButtonRead1
             // 
@@ -206,6 +211,7 @@
             this.ButtonRead1.TabIndex = 13;
             this.ButtonRead1.Text = "读取";
             this.ButtonRead1.UseVisualStyleBackColor = true;
+            this.ButtonRead1.Click += new System.EventHandler(this.ButtonRead1_Click);
             // 
             // ButtonReserverd1
             // 
@@ -235,6 +241,7 @@
             this.ButtonRead2.TabIndex = 25;
             this.ButtonRead2.Text = "读取";
             this.ButtonRead2.UseVisualStyleBackColor = true;
+            this.ButtonRead2.Click += new System.EventHandler(this.ButtonRead2_Click);
             // 
             // ButtonWrite2
             // 
@@ -244,6 +251,7 @@
             this.ButtonWrite2.TabIndex = 24;
             this.ButtonWrite2.Text = "写入";
             this.ButtonWrite2.UseVisualStyleBackColor = true;
+            this.ButtonWrite2.Click += new System.EventHandler(this.ButtonWrite2_Click);
             // 
             // label8
             // 
@@ -312,16 +320,16 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(468, 218);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(56, 16);
+            this.label12.Size = new System.Drawing.Size(104, 16);
             this.label12.TabIndex = 16;
-            this.label12.Text = "运放倍数";
+            this.label12.Text = "可变运放电阻等级";
             // 
             // TextMulti2
             // 
-            this.TextMulti2.Location = new System.Drawing.Point(530, 215);
+            this.TextMulti2.AccessibleDescription = "";
+            this.TextMulti2.Location = new System.Drawing.Point(578, 215);
             this.TextMulti2.Name = "TextMulti2";
-            this.TextMulti2.ReadOnly = true;
-            this.TextMulti2.Size = new System.Drawing.Size(130, 22);
+            this.TextMulti2.Size = new System.Drawing.Size(82, 22);
             this.TextMulti2.TabIndex = 15;
             // 
             // label13
@@ -508,6 +516,7 @@
             // 
             this.TextFre.Location = new System.Drawing.Point(530, 375);
             this.TextFre.Name = "TextFre";
+            this.TextFre.ReadOnly = true;
             this.TextFre.Size = new System.Drawing.Size(130, 22);
             this.TextFre.TabIndex = 45;
             // 
@@ -519,6 +528,7 @@
             this.ButtonConnect.TabIndex = 49;
             this.ButtonConnect.Text = "连接";
             this.ButtonConnect.UseVisualStyleBackColor = true;
+            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
             // 
             // ButtonStartStop
             // 
@@ -529,12 +539,34 @@
             this.ButtonStartStop.TabIndex = 50;
             this.ButtonStartStop.Text = "开始";
             this.ButtonStartStop.UseVisualStyleBackColor = true;
+            this.ButtonStartStop.Click += new System.EventHandler(this.ButtonStartStop_Click);
+            // 
+            // TimerData
+            // 
+            this.TimerData.Tick += new System.EventHandler(this.TimerData_Tick);
+            // 
+            // TimerTemperature
+            // 
+            this.TimerTemperature.Interval = 1000;
+            this.TimerTemperature.Tick += new System.EventHandler(this.TimerTemperature_Tick);
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Enabled = false;
+            this.buttonReset.Location = new System.Drawing.Point(643, 403);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(91, 23);
+            this.buttonReset.TabIndex = 51;
+            this.buttonReset.Text = "初始化帧率";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 465);
+            this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.ButtonStartStop);
             this.Controls.Add(this.ButtonConnect);
             this.Controls.Add(this.label24);
@@ -649,6 +681,9 @@
         private System.Windows.Forms.TextBox TextFre;
         private System.Windows.Forms.Button ButtonConnect;
         private System.Windows.Forms.Button ButtonStartStop;
+        private System.Windows.Forms.Timer TimerData;
+        private System.Windows.Forms.Timer TimerTemperature;
+        private System.Windows.Forms.Button buttonReset;
     }
 }
 
