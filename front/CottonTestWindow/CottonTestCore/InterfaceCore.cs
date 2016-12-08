@@ -340,9 +340,9 @@ namespace CottonTestCore
             to_send.Add(BitConverter.GetBytes(0));
             var re = c.send_and_receive_sync(Client.byte_connect(to_send));
             print_rev(re);
-            //请注意：此处没使用另外两对数据
-            uint x1 = BitConverter.ToUInt16(re.data, 4);
-            uint x2 = BitConverter.ToUInt16(re.data, 6);
+            //请注意：此处将三对数据做了平均
+            uint x1 = (uint)((BitConverter.ToUInt16(re.data, 4) + BitConverter.ToUInt16(re.data, 8) + BitConverter.ToUInt16(re.data, 12)) / 3.0);
+            uint x2 = (uint)((BitConverter.ToUInt16(re.data, 6) + BitConverter.ToUInt16(re.data, 10) + BitConverter.ToUInt16(re.data, 14)) / 3.0);
             if (!cal)
                 return new KeyValuePair<double, double>(x1, x2);
             else
