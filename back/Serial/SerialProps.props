@@ -17,7 +17,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(OutputPath)..\Dlls\*.dll $(OutputPath)</Command>
+      <Command>copy $(OutputPath)..\Dlls\*.dll $(OutputPath)
+IF "$(ConfigurationName)"=="Release" (
+IF NOT EXIST $(ProjectDir)..\..\..\Release\Server\ (
+MD $(ProjectDir)..\..\..\Release\Server\
+)
+)
+IF "$(ConfigurationName)"=="Release" (copy $(OutputPath)*.exe $(ProjectDir)..\..\..\Release\Server\)
+IF "$(ConfigurationName)"=="Release" (copy $(OutputPath)*.dll $(ProjectDir)..\..\..\Release\Server\)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
