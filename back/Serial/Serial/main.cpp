@@ -57,9 +57,9 @@ int CapCallBack(PvImage* pData, void* pUserData)
 	
 	mMutex->lock();
 	PBYTE lDataPtr = pData->GetDataPointer();
-	if (cap_num % 60 == 0)
+	if (cap_num % 31 == 0)
 	{
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < RAW_DATA_LENTH; i++)
 			printf("0x%02x ", *(lDataPtr + i));
 		printf("\n");
 	}
