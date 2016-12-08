@@ -149,6 +149,11 @@ namespace CottonTestCore
         }
 
         /// <summary>
+        /// 是否打印从服务器收到的数据
+        /// </summary>
+        public bool print_received = true;
+
+        /// <summary>
         /// 连接服务器
         /// </summary>
         /// <param name="ip_address"></param>
@@ -347,26 +352,29 @@ namespace CottonTestCore
         Client c = new Client();
         void print_rev(Client.ReceiveEventArgs arg)
         {
-            Console.WriteLine(arg.time.ToString());
-            Console.WriteLine(Encoding.ASCII.GetString(arg.data, 0, 4) + ":");
-            string tmp = "";
-            string tmp2;
-            tmp += "0x";
-            tmp2 = Convert.ToString(BitConverter.ToInt32(arg.data, 4), 16);
-            for (int i = 0; i < 8 - tmp2.Length; i++)
-                tmp += "0";
-            tmp += tmp2;
-            tmp += " 0x";
-            tmp2 = Convert.ToString(BitConverter.ToInt32(arg.data, 8), 16);
-            for (int i = 0; i < 8 - tmp2.Length; i++)
-                tmp += "0";
-            tmp += tmp2;
-            tmp += " 0x";
-            tmp2 = Convert.ToString(BitConverter.ToInt32(arg.data, 12), 16);
-            for (int i = 0; i < 8 - tmp2.Length; i++)
-                tmp += "0";
-            tmp += tmp2;
-            Console.WriteLine(tmp);
+            if (print_received)
+            {
+                Console.WriteLine(arg.time.ToString());
+                Console.WriteLine(Encoding.ASCII.GetString(arg.data, 0, 4) + ":");
+                string tmp = "";
+                string tmp2;
+                tmp += "0x";
+                tmp2 = Convert.ToString(BitConverter.ToInt32(arg.data, 4), 16);
+                for (int i = 0; i < 8 - tmp2.Length; i++)
+                    tmp += "0";
+                tmp += tmp2;
+                tmp += " 0x";
+                tmp2 = Convert.ToString(BitConverter.ToInt32(arg.data, 8), 16);
+                for (int i = 0; i < 8 - tmp2.Length; i++)
+                    tmp += "0";
+                tmp += tmp2;
+                tmp += " 0x";
+                tmp2 = Convert.ToString(BitConverter.ToInt32(arg.data, 12), 16);
+                for (int i = 0; i < 8 - tmp2.Length; i++)
+                    tmp += "0";
+                tmp += tmp2;
+                Console.WriteLine(tmp);
+            }
         }
     }
 }

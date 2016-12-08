@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TextConsole = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.TextMulti1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Text12AD1 = new System.Windows.Forms.TextBox();
@@ -55,7 +54,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.Text12AD2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.TextMulti2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.TextTemp1 = new System.Windows.Forms.TextBox();
@@ -83,6 +81,11 @@
             this.TimerData = new System.Windows.Forms.Timer(this.components);
             this.TimerTemperature = new System.Windows.Forms.Timer(this.components);
             this.buttonReset = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -113,14 +116,6 @@
             this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "参数控制";
-            // 
-            // TextMulti1
-            // 
-            this.TextMulti1.AccessibleDescription = "";
-            this.TextMulti1.Location = new System.Drawing.Point(578, 73);
-            this.TextMulti1.Name = "TextMulti1";
-            this.TextMulti1.Size = new System.Drawing.Size(82, 22);
-            this.TextMulti1.TabIndex = 3;
             // 
             // label3
             // 
@@ -161,7 +156,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(666, 98);
+            this.label6.Location = new System.Drawing.Point(666, 104);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 16);
             this.label6.TabIndex = 11;
@@ -170,7 +165,7 @@
             // TextRevserved1
             // 
             this.TextRevserved1.Enabled = false;
-            this.TextRevserved1.Location = new System.Drawing.Point(743, 95);
+            this.TextRevserved1.Location = new System.Drawing.Point(743, 101);
             this.TextRevserved1.Name = "TextRevserved1";
             this.TextRevserved1.Size = new System.Drawing.Size(130, 22);
             this.TextRevserved1.TabIndex = 10;
@@ -178,7 +173,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(468, 98);
+            this.label7.Location = new System.Drawing.Point(468, 104);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 16);
             this.label7.TabIndex = 9;
@@ -186,7 +181,7 @@
             // 
             // TextPWM1
             // 
-            this.TextPWM1.Location = new System.Drawing.Point(530, 95);
+            this.TextPWM1.Location = new System.Drawing.Point(530, 101);
             this.TextPWM1.Name = "TextPWM1";
             this.TextPWM1.ReadOnly = true;
             this.TextPWM1.Size = new System.Drawing.Size(130, 22);
@@ -195,7 +190,7 @@
             // 
             // ButtonWrite1
             // 
-            this.ButtonWrite1.Location = new System.Drawing.Point(798, 123);
+            this.ButtonWrite1.Location = new System.Drawing.Point(797, 129);
             this.ButtonWrite1.Name = "ButtonWrite1";
             this.ButtonWrite1.Size = new System.Drawing.Size(75, 23);
             this.ButtonWrite1.TabIndex = 12;
@@ -205,7 +200,7 @@
             // 
             // ButtonRead1
             // 
-            this.ButtonRead1.Location = new System.Drawing.Point(471, 123);
+            this.ButtonRead1.Location = new System.Drawing.Point(470, 129);
             this.ButtonRead1.Name = "ButtonRead1";
             this.ButtonRead1.Size = new System.Drawing.Size(75, 23);
             this.ButtonRead1.TabIndex = 13;
@@ -216,7 +211,7 @@
             // ButtonReserverd1
             // 
             this.ButtonReserverd1.Enabled = false;
-            this.ButtonReserverd1.Location = new System.Drawing.Point(643, 123);
+            this.ButtonReserverd1.Location = new System.Drawing.Point(642, 129);
             this.ButtonReserverd1.Name = "ButtonReserverd1";
             this.ButtonReserverd1.Size = new System.Drawing.Size(75, 23);
             this.ButtonReserverd1.TabIndex = 14;
@@ -300,7 +295,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(666, 218);
+            this.label11.Location = new System.Drawing.Point(666, 212);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 16);
             this.label11.TabIndex = 18;
@@ -308,7 +303,7 @@
             // 
             // Text12AD2
             // 
-            this.Text12AD2.Location = new System.Drawing.Point(743, 215);
+            this.Text12AD2.Location = new System.Drawing.Point(743, 209);
             this.Text12AD2.Name = "Text12AD2";
             this.Text12AD2.ReadOnly = true;
             this.Text12AD2.Size = new System.Drawing.Size(130, 22);
@@ -318,19 +313,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(468, 218);
+            this.label12.Location = new System.Drawing.Point(468, 212);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(104, 16);
             this.label12.TabIndex = 16;
             this.label12.Text = "可变运放电阻等级";
-            // 
-            // TextMulti2
-            // 
-            this.TextMulti2.AccessibleDescription = "";
-            this.TextMulti2.Location = new System.Drawing.Point(578, 215);
-            this.TextMulti2.Name = "TextMulti2";
-            this.TextMulti2.Size = new System.Drawing.Size(82, 22);
-            this.TextMulti2.TabIndex = 15;
             // 
             // label13
             // 
@@ -561,11 +548,61 @@
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(578, 74);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(82, 22);
+            this.numericUpDown1.TabIndex = 52;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(578, 210);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(82, 22);
+            this.numericUpDown2.TabIndex = 53;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(350, 8);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(111, 20);
+            this.checkBox1.TabIndex = 54;
+            this.checkBox1.Text = "打印收到的数据";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 465);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.ButtonStartStop);
             this.Controls.Add(this.ButtonConnect);
@@ -602,7 +639,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.Text12AD2);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.TextMulti2);
             this.Controls.Add(this.ButtonReserverd1);
             this.Controls.Add(this.ButtonRead1);
             this.Controls.Add(this.ButtonWrite1);
@@ -614,7 +650,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Text12AD1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.TextMulti1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TextConsole);
             this.Controls.Add(this.label1);
@@ -623,6 +658,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CottonTestWindow";
             this.Text = "CottonTest";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -633,7 +670,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TextConsole;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TextMulti1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox Text12AD1;
@@ -656,7 +692,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox Text12AD2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox TextMulti2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox TextTemp1;
@@ -684,6 +719,9 @@
         private System.Windows.Forms.Timer TimerData;
         private System.Windows.Forms.Timer TimerTemperature;
         private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

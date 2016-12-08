@@ -70,7 +70,8 @@ namespace CottonTestWindow
         {
             try
             {
-                TextMulti1.Text = core.GetSetRisistor(0).ToString();
+                //TextMulti1.Text = core.GetSetRisistor(0).ToString();
+                numericUpDown1.Value = core.GetSetRisistor(0);
             }
             catch (Exception ex)
             {
@@ -82,7 +83,8 @@ namespace CottonTestWindow
         {
             try
             {
-                int x = int.Parse(TextMulti1.Text);
+                //int x = int.Parse(TextMulti1.Text);
+                int x = (int)numericUpDown1.Value;
                 if (x > 15 || x < 0)
                     throw new Exception("调节超过了16级level");
                 core.GetSetRisistor(0, true, x);
@@ -97,7 +99,8 @@ namespace CottonTestWindow
         {
             try
             {
-                TextMulti2.Text = core.GetSetRisistor(1).ToString();
+                //TextMulti2.Text = core.GetSetRisistor(1).ToString();
+                numericUpDown2.Value = core.GetSetRisistor(1);
             }
             catch (Exception ex)
             {
@@ -109,7 +112,8 @@ namespace CottonTestWindow
         {
             try
             {
-                int x = int.Parse(TextMulti2.Text);
+                //int x = int.Parse(TextMulti2.Text);
+                int x = (int)numericUpDown2.Value;
                 if (x > 15 || x < 0)
                     throw new Exception("调节超过了16级level");
                 core.GetSetRisistor(1, true, x);
@@ -157,6 +161,11 @@ namespace CottonTestWindow
                 Console.WriteLine(ex.Message);
             }
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            core.print_received = checkBox1.Checked;
+        }
     }
 
     public class ConsoleHelper : TextWriter
@@ -169,6 +178,7 @@ namespace CottonTestWindow
             this._textBox = textBox;
             Console.SetOut(this);
         }
+
         public override void Write(string value)
         {
             if (_textBox.IsHandleCreated)
