@@ -3,6 +3,7 @@
 #include"MVGevSource.h"
 #include"SerialBKServer.h"
 #include"DataModel.h"
+#include<PvPixelType.h>
 
 #define SERVER_MODE_ENABLE
 
@@ -31,8 +32,10 @@ int main()
 		system("pause");
 		return 0;
 	}
+	auto para = mCamera->lDevice->GetParameters();
+	para->SetEnumValue("PixelFormat", PvPixelMono12);
 	mCamera->Start(0, 1);
-
+	
 #ifdef SERVER_MODE_ENABLE
 	SerialBKServer server(mCamera, mMutex, data_pack);
 	server.start();
@@ -54,8 +57,6 @@ int main()
 int CapCallBack(PvImage* pData, void* pUserData)
 {
 	cap_num++;
-	
-	mMutex->lock();
 	PBYTE lDataPtr = pData->GetDataPointer();
 	if (cap_num % 31 == 0)
 	{
@@ -63,6 +64,7 @@ int CapCallBack(PvImage* pData, void* pUserData)
 			printf("0x%02x ", *(lDataPtr + i));
 		printf("\n");
 	}
+	mMutex->lock();
 	memcpy(data_pack->data, lDataPtr, RAW_DATA_LENTH);
 	mMutex->unlock();
 	return true;

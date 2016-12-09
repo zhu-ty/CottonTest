@@ -272,7 +272,7 @@ namespace CottonTestCore
         /// <param name="set"></param>
         /// <param name="freq">周期</param>
         /// <returns></returns>
-        public uint GetSetPeriod(bool set = false, int freq = 100)
+        public uint GetSetPeriod(bool set = false, int freq = 128)
         {
             if (!connected)
                 throw new Exception("服务器未连接");
@@ -292,7 +292,7 @@ namespace CottonTestCore
         /// <param name="set"></param>
         /// <param name="width">宽度</param>
         /// <returns></returns>
-        public uint GetSetWidth(bool set = false, int width = 100)
+        public uint GetSetWidth(bool set = false, int width = 128)
         {
             if (!connected)
                 throw new Exception("服务器未连接");

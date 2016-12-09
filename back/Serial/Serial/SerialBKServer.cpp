@@ -87,7 +87,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 	while (1)
 	{
 		//warning:所有的byte均为低位在前（以byte(8bit)为单位）
-		//所有的reg读取均为高位在前
+		//请注意顺序
 		int byte_rev;
 		char buffer[DATA_LEN] = { 0 };
 		byte_rev = recv(*s, buffer, DATA_LEN, 0);
@@ -134,7 +134,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 			else if (buffer[0] == 'R' && buffer[1] == 'A' && buffer[2] == 'W')
 			{
 				suc = -1;
-				memcpy(buffer_send + 4, _rdp->data, min(DATA_LEN, RAW_DATA_LENTH) - 4);
+				memcpy(buffer_send + 4, _rdp->data, min(DATA_LEN - 4, RAW_DATA_LENTH));
 			}
 			if (suc == 0)
 			{
@@ -148,7 +148,6 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 				buffer_send[0], buffer_send[1], buffer_send[2], buffer_send[3],
 				ByteToint(buffer_send + 4), ByteToint(buffer_send + 8), ByteToint(buffer_send + 12));
 		}
-
 	}
 }
 

@@ -86,6 +86,7 @@ public:
 	void SetCallback(VideoCallback pVideoCallback, void* pUserData) ;
 	CMvImgSaver		 mImageSaver;
 	CMVSerial*		 mSerial;
+	PvDeviceGEV		*lDevice;
 	BOOL Open(HWND hWnd, TCHAR* sConfigFile = NULL, int lChannel = 0);
 	BOOL Start(int streamChannel, BOOL lbController, int lThreadCPU=-1);
 	void Stop(int streamChannel, BOOL lbController) ;
@@ -129,7 +130,7 @@ private:
 
 	PvDeviceFinderWnd	lDeviceFinderWnd;
 	const PvDeviceInfo	*lDeviceInfo;
-	PvDeviceGEV			*lDevice;		
+			
 	PvStreamGEV			*lStream;
 	PvPipeline			*lPipeline;
 
