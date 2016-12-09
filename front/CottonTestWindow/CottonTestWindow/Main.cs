@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CottonTestCore;
 using System.IO;
 using System.Threading;
+using System.Drawing.Drawing2D;
 
 namespace CottonTestWindow
 {
@@ -165,6 +166,24 @@ namespace CottonTestWindow
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             core.print_received = checkBox1.Checked;
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            Bitmap bit = new Bitmap(this.Width, this.Height);//实例化一个和窗体一样大的bitmap
+            Graphics g = Graphics.FromImage(bit);
+            g.CompositingQuality = CompositingQuality.HighQuality;//质量设为最高
+            g.CopyFromScreen(this.Left, this.Top, 0, 0, new Size(this.Width, this.Height));//保存整个窗体为图片
+            //只保存某个控件（这里是panel游戏区）
+            //g.CopyFromScreen(panel游戏区 .PointToScreen(Point.Empty), Point.Empty, panel游戏区.Size);
+            string str_dir = System.Environment.CurrentDirectory + "/screen_shot";
+            if (Directory.Exists(str_dir) == false)//如果不存在就创建file文件夹
+            {
+                Directory.CreateDirectory(str_dir);
+            }
+
+
+            bit.Save(str_dir+"/window_" +DateTime.Now.ToString("yy_MM_dd_hh_mm_ss")+".png");//默认保存格式为PNG，保存成jpg格式质量不是很好
         }
     }
 
