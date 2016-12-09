@@ -85,6 +85,8 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.buttonPrint = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -418,7 +420,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(89, 433);
+            this.label20.Location = new System.Drawing.Point(89, 470);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(68, 16);
             this.label20.TabIndex = 38;
@@ -426,7 +428,7 @@
             // 
             // TextOutdif
             // 
-            this.TextOutdif.Location = new System.Drawing.Point(163, 430);
+            this.TextOutdif.Location = new System.Drawing.Point(163, 467);
             this.TextOutdif.Name = "TextOutdif";
             this.TextOutdif.ReadOnly = true;
             this.TextOutdif.Size = new System.Drawing.Size(130, 22);
@@ -598,7 +600,7 @@
             // 
             // buttonPrint
             // 
-            this.buttonPrint.Location = new System.Drawing.Point(346, 430);
+            this.buttonPrint.Location = new System.Drawing.Point(346, 467);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(75, 23);
             this.buttonPrint.TabIndex = 55;
@@ -606,11 +608,27 @@
             this.buttonPrint.UseVisualStyleBackColor = true;
             this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(74, 426);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(130, 23);
+            this.progressBar1.TabIndex = 56;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(291, 426);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(130, 23);
+            this.progressBar2.TabIndex = 57;
+            // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 465);
+            this.ClientSize = new System.Drawing.Size(884, 500);
+            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.numericUpDown2);
@@ -735,6 +753,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button buttonPrint;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar2;
     }
 }
 

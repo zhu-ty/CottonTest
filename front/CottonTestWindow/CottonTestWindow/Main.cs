@@ -25,6 +25,8 @@ namespace CottonTestWindow
             numericUpDown1.Minimum = 0;
             numericUpDown2.Maximum = InterfaceCore.PHOTODIODE.AMP3_RL_STEP_MAX;
             numericUpDown2.Minimum = 0;
+            progressBar1.Maximum = (int)InterfaceCore.PHOTODIODE.AD_MAX;
+            progressBar2.Maximum = (int)InterfaceCore.PHOTODIODE.AD_MAX;
         }
 
         private void ButtonConnect_Click(object sender, EventArgs e)
@@ -137,6 +139,8 @@ namespace CottonTestWindow
                 TextOut1.Text = Math.Round(val.Key, 2).ToString();
                 TextOut2.Text = Math.Round(val.Value, 2).ToString();
                 TextOutdif.Text = Math.Round(val.Key - val.Value, 2).ToString();
+                progressBar1.Value = (int)Math.Round(val.Key);
+                progressBar2.Value = (int)Math.Round(val.Value);
             }
             catch (Exception ex)
             {
