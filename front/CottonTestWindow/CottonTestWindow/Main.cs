@@ -21,6 +21,10 @@ namespace CottonTestWindow
         {
             InitializeComponent();
             new ConsoleHelper(this.TextConsole);
+            numericUpDown1.Maximum = InterfaceCore.PHOTODIODE.AMP3_RL_STEP_MAX;
+            numericUpDown1.Minimum = 0;
+            numericUpDown2.Maximum = InterfaceCore.PHOTODIODE.AMP3_RL_STEP_MAX;
+            numericUpDown2.Minimum = 0;
         }
 
         private void ButtonConnect_Click(object sender, EventArgs e)
@@ -86,7 +90,7 @@ namespace CottonTestWindow
             {
                 //int x = int.Parse(TextMulti1.Text);
                 int x = (int)numericUpDown1.Value;
-                if (x > 15 || x < 0)
+                if (x > InterfaceCore.PHOTODIODE.AMP3_RL_STEP_MAX || x < 0)
                     throw new Exception("调节超过了16级level");
                 core.GetSetRisistor(0, true, x);
             }
@@ -115,7 +119,7 @@ namespace CottonTestWindow
             {
                 //int x = int.Parse(TextMulti2.Text);
                 int x = (int)numericUpDown2.Value;
-                if (x > 15 || x < 0)
+                if (x > InterfaceCore.PHOTODIODE.AMP3_RL_STEP_MAX || x < 0)
                     throw new Exception("调节超过了16级level");
                 core.GetSetRisistor(1, true, x);
             }
@@ -142,10 +146,17 @@ namespace CottonTestWindow
 
         private void TimerTemperature_Tick(object sender, EventArgs e)
         {
-            double val = core.GetTemperature(0);
-            TextTemp1.Text = Math.Round(val, 2).ToString();
-            val = core.GetTemperature(1);
-            TextTemp2.Text = Math.Round(val, 2).ToString();
+            try
+            {
+                double val = core.GetTemperature(0);
+                TextTemp1.Text = Math.Round(val, 2).ToString();
+                val = core.GetTemperature(1);
+                TextTemp2.Text = Math.Round(val, 2).ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private void buttonReset_Click(object sender, EventArgs e)

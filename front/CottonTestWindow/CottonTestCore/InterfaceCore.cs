@@ -254,8 +254,10 @@ namespace CottonTestCore
         {
             if (!connected)
                 throw new Exception("服务器未连接");
-            if (value < MAX_VALUE)
+            if (value > MAX_VALUE)
                 throw new Exception("设置的电阻值超过了能提供的最大值");
+            if (value < 0)
+                throw new Exception("设置的电阻值小于零");
             uint address = 0xff77 + (uint)num;
             Client.ReceiveEventArgs re;
             if (set)
