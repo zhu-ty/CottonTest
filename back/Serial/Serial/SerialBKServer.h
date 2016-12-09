@@ -36,11 +36,11 @@ private:
 
 	void ListenThread();
 	void CommunicateThread(LPVOID lparam);
-
+public:
 	//Ll Lm Ml MM
-	void  intToByte(int i, char *bytes);
+	static void intToByte(int i, char *bytes);
 	//Ll Lm Ml MM
-	unsigned int  ByteToint(char *bytes);
+	static unsigned int ByteToint(char *bytes);
 
 };
 

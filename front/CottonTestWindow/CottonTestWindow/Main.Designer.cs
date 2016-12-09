@@ -542,9 +542,9 @@
             this.buttonReset.Enabled = false;
             this.buttonReset.Location = new System.Drawing.Point(643, 403);
             this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(91, 23);
+            this.buttonReset.Size = new System.Drawing.Size(74, 23);
             this.buttonReset.TabIndex = 51;
-            this.buttonReset.Text = "初始化帧率";
+            this.buttonReset.Text = "初始化";
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
@@ -552,7 +552,7 @@
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(578, 74);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            15,
+            16,
             0,
             0,
             0});
@@ -560,7 +560,7 @@
             this.numericUpDown1.Size = new System.Drawing.Size(82, 22);
             this.numericUpDown1.TabIndex = 52;
             this.numericUpDown1.Value = new decimal(new int[] {
-            15,
+            16,
             0,
             0,
             0});
@@ -569,7 +569,7 @@
             // 
             this.numericUpDown2.Location = new System.Drawing.Point(578, 210);
             this.numericUpDown2.Maximum = new decimal(new int[] {
-            15,
+            16,
             0,
             0,
             0});
@@ -577,7 +577,7 @@
             this.numericUpDown2.Size = new System.Drawing.Size(82, 22);
             this.numericUpDown2.TabIndex = 53;
             this.numericUpDown2.Value = new decimal(new int[] {
-            15,
+            16,
             0,
             0,
             0});

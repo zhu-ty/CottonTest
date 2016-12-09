@@ -268,11 +268,12 @@ namespace CottonTestCore
         /// <summary>
         /// 获取/设置数据采集周期（频率）
         /// 单位：Hz
+        /// 应当大于等于显示频率！（默认100）
         /// </summary>
         /// <param name="set"></param>
         /// <param name="freq">周期</param>
         /// <returns></returns>
-        public uint GetSetPeriod(bool set = false, int freq = 128)
+        public uint GetSetPeriod(bool set = false, int freq = 100)
         {
             if (!connected)
                 throw new Exception("服务器未连接");
@@ -288,11 +289,12 @@ namespace CottonTestCore
         /// <summary>
         /// 获取/设置数据采集宽度
         /// 单位：AD的时钟
+        /// 应当大于等于显示宽度！（默认80）
         /// </summary>
         /// <param name="set"></param>
         /// <param name="width">宽度</param>
         /// <returns></returns>
-        public uint GetSetWidth(bool set = false, int width = 128)
+        public uint GetSetWidth(bool set = false, int width = 80)
         {
             if (!connected)
                 throw new Exception("服务器未连接");

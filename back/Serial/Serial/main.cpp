@@ -34,6 +34,10 @@ int main()
 	}
 	auto para = mCamera->lDevice->GetParameters();
 	para->SetEnumValue("PixelFormat", PvPixelMono12);
+	para->SetIntegerValue("Height", 100);
+	para->SetIntegerValue("Width", 80);
+	mCamera->mSerial->SetRegValue(0, 0xff79, 100);
+	mCamera->mSerial->SetRegValue(0, 0xff80, 80);
 	mCamera->Start(0, 1);
 	
 #ifdef SERVER_MODE_ENABLE
