@@ -38,7 +38,7 @@ private:
 	void CommunicateThread(LPVOID lparam);
 public:
 	//Ll Lm Ml MM
-	static void intToByte(int i, char *bytes);
+	static void intToByte(unsigned int i, char *bytes);
 	//Ll Lm Ml MM
 	static unsigned int ByteToint(char *bytes);
 

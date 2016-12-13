@@ -354,22 +354,32 @@ namespace CottonTestCore
         }
 
         /// <summary>
-        /// 设置C++层平均次数
+        /// 获取/设置C++层平均次数
         /// </summary>
         /// <param name="avg"></param>
         /// <returns></returns>
-        public bool SetAvg(uint avg)
+        public uint GetSetAvg(bool set = false, uint avg = 100)
         {
             if (!connected)
                 throw new Exception("服务器未连接");
             List<byte[]> to_send = new List<byte[]>();
-            to_send.Add(new byte[] { (byte)'A', (byte)'V', (byte)'G', (byte)'X' });
-            to_send.Add(BitConverter.GetBytes(avg));
-            to_send.Add(BitConverter.GetBytes(0));
-            to_send.Add(BitConverter.GetBytes(0));
+            if (set)
+            {
+                to_send.Add(new byte[] { (byte)'A', (byte)'V', (byte)'G', (byte)'X' });
+                to_send.Add(BitConverter.GetBytes(avg));
+                to_send.Add(BitConverter.GetBytes(0));
+                to_send.Add(BitConverter.GetBytes(0));
+            }
+            else
+            {
+                to_send.Add(new byte[] { (byte)'G', (byte)'A', (byte)'V', (byte)'X' });
+                to_send.Add(BitConverter.GetBytes(0));
+                to_send.Add(BitConverter.GetBytes(0));
+                to_send.Add(BitConverter.GetBytes(0));
+            }
             var re = c.send_and_receive_sync(Client.byte_connect(to_send));
             print_rev(re);
-            return true;
+            return BitConverter.ToUInt32(re.data,4);
         }
 
         Client c = new Client();

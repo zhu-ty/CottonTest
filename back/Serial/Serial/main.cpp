@@ -12,6 +12,23 @@ std::shared_ptr<mutex> mMutex;
 std::shared_ptr<RawDataPack> data_pack;
 int CapCallBack(PvImage* pData, void* pUserData);
 
+
+unsigned int ByteToshort(unsigned char * bytes)
+{
+	unsigned int i = 0;
+	i += (unsigned int)(bytes[0]);
+	i += ((unsigned int)(bytes[1]) << 8) & 0xff00;
+	return i;
+}
+
+void shortToByte(unsigned int i, unsigned char * bytes)
+{
+	memset(bytes, 0, sizeof(unsigned char) * 2);
+	bytes[0] = (unsigned char)(0xff & i);
+	bytes[1] = (unsigned char)((0xff00 & i) >> 8);
+	return;
+}
+
 int main()
 {
 	printf("HelloWorld!\n");
@@ -71,21 +88,24 @@ int CapCallBack(PvImage* pData, void* pUserData)
 		printf("\n");
 	}
 	mMutex->lock();
-	int real_avg = max(min(80 * 100 / RAW_DATA_LENTH, data_pack->avg),1);
+	unsigned int real_avg = max(min(80 * 2 * 100 / RAW_DATA_LENTH, data_pack->avg),1);
 	mMutex->unlock();
-	unsigned int to_avg[RAW_DATA_LENTH] = { 0 };
-	memset(to_avg, 0, sizeof(unsigned int) * RAW_DATA_LENTH);
+	unsigned int to_avg[RAW_DATA_LENTH / 2] = { 0 };
+	memset(to_avg, 0, sizeof(unsigned int) * RAW_DATA_LENTH / 2);
 	for (int i = 0; i < real_avg; i++)
 	{
-		for (int j = 0; j < RAW_DATA_LENTH; j++)
+		for (int j = 0; j < RAW_DATA_LENTH / 2; j++)
 		{
-			to_avg[j] += lDataPtr[i * real_avg + j];
+			to_avg[j] += ByteToshort(lDataPtr + i * RAW_DATA_LENTH + j * 2);
 		}
 	}
 	unsigned char avg_ans[RAW_DATA_LENTH];
-	for (int j = 0; j < RAW_DATA_LENTH; j++)
+	for (int j = 0; j < RAW_DATA_LENTH / 2; j++)
 	{
-		avg_ans[j] = to_avg[j] / real_avg;
+		unsigned char tmp[2];
+		to_avg[j] = to_avg[j] / real_avg;
+		shortToByte(to_avg[j], tmp);
+		memcpy(avg_ans + j * 2, tmp, 2);
 	}
 	mMutex->lock();
 	memcpy(data_pack->data, avg_ans, RAW_DATA_LENTH);

@@ -99,7 +99,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 				ByteToint(buffer + 4), ByteToint(buffer + 8), ByteToint(buffer + 12));
 			_mtx->lock();
 			char buffer_send[DATA_LEN] = { 0 };
-			char buffer_tmp[4];
+			char buffer_tmp[4] = {0};
 			buffer_send[0] = 'R';
 			buffer_send[1] = 'E';
 			buffer_send[2] = 'T';
@@ -138,8 +138,15 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 			}
 			else if (buffer[0] == 'A' && buffer[1] == 'V' && buffer[2] == 'G')
 			{
-				suc = -1;
+				suc = 0;
 				_rdp->avg = ByteToint(buffer + 4);
+			}
+			else if (buffer[0] == 'G' && buffer[1] == 'A' && buffer[2] == 'V')
+			{
+				suc = -1;
+				char buffer_tmp2[4];
+				intToByte(_rdp->avg, buffer_tmp2);
+				memcpy(buffer_send + 4, buffer_tmp2, 4);
 			}
 			if (suc == 0)
 			{
@@ -158,7 +165,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 
 
 
-void SerialBKServer::intToByte(int i, char * bytes)
+void SerialBKServer::intToByte(unsigned int i, char * bytes)
 {
 	memset(bytes, 0, sizeof(char) *  4);
 	bytes[0] = (char)(0xff & i);

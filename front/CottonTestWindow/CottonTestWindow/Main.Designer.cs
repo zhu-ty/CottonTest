@@ -90,6 +90,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.textBoxAVG = new System.Windows.Forms.TextBox();
             this.button_avg_write = new System.Windows.Forms.Button();
+            this.button_avg_read = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -628,7 +629,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(563, 9);
+            this.label26.Location = new System.Drawing.Point(529, 9);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(80, 16);
             this.label26.TabIndex = 58;
@@ -636,16 +637,15 @@
             // 
             // textBoxAVG
             // 
-            this.textBoxAVG.Enabled = false;
-            this.textBoxAVG.Location = new System.Drawing.Point(649, 6);
+            this.textBoxAVG.Location = new System.Drawing.Point(615, 6);
             this.textBoxAVG.Name = "textBoxAVG";
-            this.textBoxAVG.Size = new System.Drawing.Size(130, 22);
+            this.textBoxAVG.Size = new System.Drawing.Size(78, 22);
             this.textBoxAVG.TabIndex = 59;
             this.textBoxAVG.Text = "100";
             // 
             // button_avg_write
             // 
-            this.button_avg_write.Location = new System.Drawing.Point(785, 6);
+            this.button_avg_write.Location = new System.Drawing.Point(798, 6);
             this.button_avg_write.Name = "button_avg_write";
             this.button_avg_write.Size = new System.Drawing.Size(75, 23);
             this.button_avg_write.TabIndex = 60;
@@ -653,11 +653,22 @@
             this.button_avg_write.UseVisualStyleBackColor = true;
             this.button_avg_write.Click += new System.EventHandler(this.button_avg_write_Click);
             // 
+            // button_avg_read
+            // 
+            this.button_avg_read.Location = new System.Drawing.Point(717, 6);
+            this.button_avg_read.Name = "button_avg_read";
+            this.button_avg_read.Size = new System.Drawing.Size(75, 23);
+            this.button_avg_read.TabIndex = 61;
+            this.button_avg_read.Text = "读取";
+            this.button_avg_read.UseVisualStyleBackColor = true;
+            this.button_avg_read.Click += new System.EventHandler(this.button_avg_read_Click);
+            // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 500);
+            this.Controls.Add(this.button_avg_read);
             this.Controls.Add(this.button_avg_write);
             this.Controls.Add(this.textBoxAVG);
             this.Controls.Add(this.label26);
@@ -792,6 +803,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBoxAVG;
         private System.Windows.Forms.Button button_avg_write;
+        private System.Windows.Forms.Button button_avg_read;
     }
 }
 

@@ -205,7 +205,19 @@ namespace CottonTestWindow
         {
             try
             {
-                core.SetAvg(uint.Parse(textBoxAVG.Text));
+                textBoxAVG.Text = core.GetSetAvg(true ,uint.Parse(textBoxAVG.Text)).ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button_avg_read_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                textBoxAVG.Text = core.GetSetAvg().ToString();
             }
             catch (Exception ex)
             {
