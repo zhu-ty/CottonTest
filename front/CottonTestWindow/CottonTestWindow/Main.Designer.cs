@@ -87,6 +87,9 @@
             this.buttonPrint = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBoxAVG = new System.Windows.Forms.TextBox();
+            this.button_avg_write = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -622,11 +625,42 @@
             this.progressBar2.Size = new System.Drawing.Size(130, 23);
             this.progressBar2.TabIndex = 57;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(563, 9);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(80, 16);
+            this.label26.TabIndex = 58;
+            this.label26.Text = "平均次数控制";
+            // 
+            // textBoxAVG
+            // 
+            this.textBoxAVG.Enabled = false;
+            this.textBoxAVG.Location = new System.Drawing.Point(649, 6);
+            this.textBoxAVG.Name = "textBoxAVG";
+            this.textBoxAVG.Size = new System.Drawing.Size(130, 22);
+            this.textBoxAVG.TabIndex = 59;
+            this.textBoxAVG.Text = "100";
+            // 
+            // button_avg_write
+            // 
+            this.button_avg_write.Location = new System.Drawing.Point(785, 6);
+            this.button_avg_write.Name = "button_avg_write";
+            this.button_avg_write.Size = new System.Drawing.Size(75, 23);
+            this.button_avg_write.TabIndex = 60;
+            this.button_avg_write.Text = "写入";
+            this.button_avg_write.UseVisualStyleBackColor = true;
+            this.button_avg_write.Click += new System.EventHandler(this.button_avg_write_Click);
+            // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 500);
+            this.Controls.Add(this.button_avg_write);
+            this.Controls.Add(this.textBoxAVG);
+            this.Controls.Add(this.label26);
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonPrint);
@@ -755,6 +789,9 @@
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBoxAVG;
+        private System.Windows.Forms.Button button_avg_write;
     }
 }
 

@@ -200,6 +200,18 @@ namespace CottonTestWindow
 
             bit.Save(str_dir+"/window_" +DateTime.Now.ToString("yy_MM_dd_hh_mm_ss")+".png");//默认保存格式为PNG，保存成jpg格式质量不是很好
         }
+
+        private void button_avg_write_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                core.SetAvg(uint.Parse(textBoxAVG.Text));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 
     public class ConsoleHelper : TextWriter

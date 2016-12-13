@@ -136,6 +136,11 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 				suc = -1;
 				memcpy(buffer_send + 4, _rdp->data, min(DATA_LEN - 4, RAW_DATA_LENTH));
 			}
+			else if (buffer[0] == 'A' && buffer[1] == 'V' && buffer[2] == 'G')
+			{
+				suc = -1;
+				_rdp->avg = ByteToint(buffer + 4);
+			}
 			if (suc == 0)
 			{
 				memcpy(buffer_send + 4, buffer + 4, 4);

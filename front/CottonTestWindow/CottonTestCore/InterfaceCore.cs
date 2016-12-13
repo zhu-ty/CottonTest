@@ -353,6 +353,25 @@ namespace CottonTestCore
                 return new KeyValuePair<double, double>(PHOTODIODE.cal(x1, r1), PHOTODIODE.cal(x2, r2));
         }
 
+        /// <summary>
+        /// 设置C++层平均次数
+        /// </summary>
+        /// <param name="avg"></param>
+        /// <returns></returns>
+        public bool SetAvg(uint avg)
+        {
+            if (!connected)
+                throw new Exception("服务器未连接");
+            List<byte[]> to_send = new List<byte[]>();
+            to_send.Add(new byte[] { (byte)'A', (byte)'V', (byte)'G', (byte)'X' });
+            to_send.Add(BitConverter.GetBytes(avg));
+            to_send.Add(BitConverter.GetBytes(0));
+            to_send.Add(BitConverter.GetBytes(0));
+            var re = c.send_and_receive_sync(Client.byte_connect(to_send));
+            print_rev(re);
+            return true;
+        }
+
         Client c = new Client();
         void print_rev(Client.ReceiveEventArgs arg)
         {

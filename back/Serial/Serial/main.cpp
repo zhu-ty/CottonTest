@@ -20,6 +20,8 @@ int main()
 	mCamera.reset(new CMvGevSource());
 	mMutex.reset(new mutex());
 	data_pack.reset(new RawDataPack());
+	data_pack->avg = 100;
+
 
 	if (mCamera->Open(NULL, NULL, 0))
 	{
@@ -69,7 +71,24 @@ int CapCallBack(PvImage* pData, void* pUserData)
 		printf("\n");
 	}
 	mMutex->lock();
-	memcpy(data_pack->data, lDataPtr, RAW_DATA_LENTH);
+	int real_avg = max(min(80 * 100 / RAW_DATA_LENTH, data_pack->avg),1);
+	mMutex->unlock();
+	unsigned int to_avg[RAW_DATA_LENTH] = { 0 };
+	memset(to_avg, 0, sizeof(unsigned int) * RAW_DATA_LENTH);
+	for (int i = 0; i < real_avg; i++)
+	{
+		for (int j = 0; j < RAW_DATA_LENTH; j++)
+		{
+			to_avg[j] += lDataPtr[i * real_avg + j];
+		}
+	}
+	unsigned char avg_ans[RAW_DATA_LENTH];
+	for (int j = 0; j < RAW_DATA_LENTH; j++)
+	{
+		avg_ans[j] = to_avg[j] / real_avg;
+	}
+	mMutex->lock();
+	memcpy(data_pack->data, avg_ans, RAW_DATA_LENTH);
 	mMutex->unlock();
 	return true;
 }

@@ -1,8 +1,9 @@
 #pragma once
 
-#define RAW_DATA_LENTH 32
+#define RAW_DATA_LENTH 12
 
 struct RawDataPack
 {
-	char data[RAW_DATA_LENTH];
+	unsigned char data[RAW_DATA_LENTH];
+	unsigned int avg;
 };
