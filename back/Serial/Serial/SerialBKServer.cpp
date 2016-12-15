@@ -110,6 +110,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 			int suc;
 			if (buffer[0] == 'G' && buffer[1] == 'E' && buffer[2] == 'T')
 			{
+#ifdef CAMERA_MODE_ENABLE
 				suc = _camera->mSerial->GetRegValue(0, ByteToint(buffer + 4), num3);
 				char buffer_tmp2[4];
 				intToByte(num3, buffer_tmp2);
@@ -118,9 +119,11 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 				buffer_tmp[1] = buffer_tmp2[1];
 				buffer_tmp[2] = buffer_tmp2[2];
 				buffer_tmp[3] = buffer_tmp2[3];
+#endif
 			}
 			else if (buffer[0] == 'S' && buffer[1] == 'E' && buffer[2] == 'T')
 			{
+#ifdef CAMERA_MODE_ENABLE
 				char buffer_tmp2[4];
 				//²»µßµ¹
 				buffer_tmp2[0] = buffer[8 + 0];
@@ -130,6 +133,7 @@ void SerialBKServer::CommunicateThread(LPVOID lparam)
 				num3 = ByteToint(buffer_tmp2);
 				suc = _camera->mSerial->SetRegValue(0, ByteToint(buffer + 4), num3);
 				memcpy(buffer_tmp, buffer + 8, 4);
+#endif
 			}
 			else if (buffer[0] == 'R' && buffer[1] == 'A' && buffer[2] == 'W')
 			{
@@ -178,7 +182,7 @@ void SerialBKServer::intToByte(unsigned int i, char * bytes)
 unsigned int SerialBKServer::ByteToint(char * bytes)
 {
 	unsigned int i = 0;
-	i += (unsigned int)(bytes[0]);
+	i += (unsigned int)(bytes[0]) & 0xff;
 	i += ((unsigned int)(bytes[1]) << 8) & 0xff00;
 	i += ((unsigned int)(bytes[2]) << 16) & 0xff0000;
 	i += ((unsigned int)(bytes[3]) << 24) & 0xff000000;

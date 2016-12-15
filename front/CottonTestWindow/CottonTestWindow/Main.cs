@@ -17,6 +17,8 @@ namespace CottonTestWindow
     public partial class CottonTestWindow : Form
     {
         InterfaceCore core = new InterfaceCore();
+        bool recording = false;
+        List<double>[] output = new List<double>[3];
         public CottonTestWindow()
         {
             InitializeComponent();
@@ -27,6 +29,10 @@ namespace CottonTestWindow
             numericUpDown2.Minimum = 0;
             progressBar1.Maximum = (int)InterfaceCore.PHOTODIODE.AD_MAX;
             progressBar2.Maximum = (int)InterfaceCore.PHOTODIODE.AD_MAX;
+            for (int i = 0; i < output.Length; i++)
+            {
+                output[i] = new List<double>();
+            }
         }
 
         private void ButtonConnect_Click(object sender, EventArgs e)
@@ -141,6 +147,12 @@ namespace CottonTestWindow
                 TextOutdif.Text = Math.Round(val.Key - val.Value, 2).ToString();
                 progressBar1.Value = (int)Math.Round(val.Key);
                 progressBar2.Value = (int)Math.Round(val.Value);
+                if (recording)
+                {
+                    output[0].Add(Math.Round(val.Key, 2));
+                    output[1].Add(Math.Round(val.Value, 2));
+                    output[2].Add(Math.Round(val.Key - val.Value, 2));
+                }
             }
             catch (Exception ex)
             {
@@ -218,6 +230,66 @@ namespace CottonTestWindow
             try
             {
                 textBoxAVG.Text = core.GetSetAvg().ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button1_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < output.Length; i++)
+                {
+                    output[i].Clear();
+                }
+                recording = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button1_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < output.Length; i++)
+                {
+                    var x = output[i].Sum() / output[i].Count;
+                    textBoxInfo.AppendText(Math.Round(x).ToString() + ",");
+                    output[i].Clear();
+                }
+                textBoxInfo.AppendText("\r\n");
+                recording = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str_dir = System.Environment.CurrentDirectory + "/data";
+                if (Directory.Exists(str_dir) == false)//如果不存在就创建file文件夹
+                {
+                    Directory.CreateDirectory(str_dir);
+                }
+                FileStream fs = new FileStream(str_dir + "/data_" + DateTime.Now.ToString("yy_MM_dd_hh_mm_ss") + ".csv", FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs);
+                //开始写入
+                sw.Write(textBoxInfo.Text);
+                //清空缓冲区
+                sw.Flush();
+                //关闭流
+                sw.Close();
+                fs.Close();
             }
             catch (Exception ex)
             {

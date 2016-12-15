@@ -91,6 +91,10 @@
             this.textBoxAVG = new System.Windows.Forms.TextBox();
             this.button_avg_write = new System.Windows.Forms.Button();
             this.button_avg_read = new System.Windows.Forms.Button();
+            this.textBoxInfo = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -111,7 +115,7 @@
             this.TextConsole.Multiline = true;
             this.TextConsole.Name = "TextConsole";
             this.TextConsole.ReadOnly = true;
-            this.TextConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TextConsole.Size = new System.Drawing.Size(449, 292);
             this.TextConsole.TabIndex = 1;
             // 
@@ -424,7 +428,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(89, 470);
+            this.label20.Location = new System.Drawing.Point(12, 470);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(68, 16);
             this.label20.TabIndex = 38;
@@ -432,7 +436,7 @@
             // 
             // TextOutdif
             // 
-            this.TextOutdif.Location = new System.Drawing.Point(163, 467);
+            this.TextOutdif.Location = new System.Drawing.Point(86, 467);
             this.TextOutdif.Name = "TextOutdif";
             this.TextOutdif.ReadOnly = true;
             this.TextOutdif.Size = new System.Drawing.Size(130, 22);
@@ -604,7 +608,7 @@
             // 
             // buttonPrint
             // 
-            this.buttonPrint.Location = new System.Drawing.Point(346, 467);
+            this.buttonPrint.Location = new System.Drawing.Point(232, 467);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(75, 23);
             this.buttonPrint.TabIndex = 55;
@@ -663,11 +667,54 @@
             this.button_avg_read.UseVisualStyleBackColor = true;
             this.button_avg_read.Click += new System.EventHandler(this.button_avg_read_Click);
             // 
+            // textBoxInfo
+            // 
+            this.textBoxInfo.Location = new System.Drawing.Point(530, 432);
+            this.textBoxInfo.Multiline = true;
+            this.textBoxInfo.Name = "textBoxInfo";
+            this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxInfo.Size = new System.Drawing.Size(346, 60);
+            this.textBoxInfo.TabIndex = 62;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(444, 435);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(80, 16);
+            this.label27.TabIndex = 63;
+            this.label27.Text = "数据记录结果";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(313, 467);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 64;
+            this.button1.Text = "记录";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
+            this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button1_MouseUp);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(446, 467);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 65;
+            this.button2.Text = "保存";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 500);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.textBoxInfo);
             this.Controls.Add(this.button_avg_read);
             this.Controls.Add(this.button_avg_write);
             this.Controls.Add(this.textBoxAVG);
@@ -804,6 +851,10 @@
         private System.Windows.Forms.TextBox textBoxAVG;
         private System.Windows.Forms.Button button_avg_write;
         private System.Windows.Forms.Button button_avg_read;
+        private System.Windows.Forms.TextBox textBoxInfo;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

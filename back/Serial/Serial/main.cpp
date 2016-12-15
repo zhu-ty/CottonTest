@@ -5,7 +5,6 @@
 #include"DataModel.h"
 #include<PvPixelType.h>
 
-#define SERVER_MODE_ENABLE
 
 typedef unsigned int uint;
 
@@ -18,7 +17,7 @@ int CapCallBack(PvImage* pData, void* pUserData);
 uint ByteToshort(unsigned char * bytes)
 {
 	uint i = 0;
-	i += (uint)(bytes[0]);
+	i += (uint)(bytes[0]) & 0xff;
 	i += ((uint)(bytes[1]) << 8) & 0xff00;
 	return i;
 }
@@ -64,7 +63,7 @@ int main()
 	mMutex.reset(new mutex());
 	data_pack.reset(new RawDataPack());
 	data_pack->avg = 100;
-
+#ifdef CAMERA_MODE_ENABLE
 
 	if (mCamera->Open(NULL, NULL, 0))
 	{
@@ -84,7 +83,7 @@ int main()
 	mCamera->mSerial->SetRegValue(0, 0xff79, 100);
 	mCamera->mSerial->SetRegValue(0, 0xff80, 80);
 	mCamera->Start(0, 1);
-	
+#endif
 #ifdef SERVER_MODE_ENABLE
 	SerialBKServer server(mCamera, mMutex, data_pack);
 	server.start();
