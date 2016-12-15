@@ -31,6 +31,10 @@ void shortToByte(uint i, unsigned char * bytes)
 	return;
 }
 
+
+//Remember data will be split into pack(s), each pack contains 12 bytes and they will represent 6 ShortInts.
+//So the data lenth must be more than (12 * avg_count) bytes.
+//The returned bytes will contain 6 ShortInts as 12 bytes, low byte first.
 void avg_function(unsigned char *data, unsigned char *avg_ans, uint avg_count)
 {
 	uint to_avg[RAW_DATA_LENTH / 2] = { 0 };
@@ -137,6 +141,10 @@ unsigned char x[] = {
 0xBC,0x19,0xBC,0x19,
 0xBC,0x19,0xBC,0x19,
 };
+
+//return will be 0x5B 0x15
+
+
 unsigned char aaaa[12] = { 0 };
 avg_function(x, aaaa, 3);
 for (int i = 0; i < 12; i ++ )
