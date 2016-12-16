@@ -12,7 +12,7 @@ namespace CottonTestCore
         public static class TEMPERATUE
         {
             public const double VREF_R = 1.2;
-            public const double VREF_AD = 3.3;
+            public const double VREF_AD = 3.0;
             public const long AD_MAX = (1 << 10) - 1;
 
             /// <summary>
@@ -85,6 +85,18 @@ namespace CottonTestCore
                     ret = LINEAR.calx(rx * 1000);
                 else
                     ret = POLY3.calx(rx * 1000);
+                return ret;
+            }
+
+            public static double cal_voltage(long ad_output, double RW = 100,
+                double R1 = 10, double R2 = 10, double R3 = 10)
+            {
+                if (RW <= 0 || ad_output == AD_MAX)
+                    return UNDEF;
+                double ad_input = ((double)ad_output / AD_MAX) * VREF_AD;
+                double v_r2r3 = VREF_R * R3 / (R2 + R3);
+                double v_rxr1 = v_r2r3 - ad_input / ((double)10 / 3 + 1 / RW * 200 / 3);
+                double ret = v_rxr1;
                 return ret;
             }
 
