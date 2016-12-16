@@ -11,6 +11,7 @@ using CottonTestCore;
 using System.IO;
 using System.Threading;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CottonTestWindow
 {
@@ -290,6 +291,57 @@ namespace CottonTestWindow
                 //关闭流
                 sw.Close();
                 fs.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void textBoxInfo_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] sp_line = textBoxInfo.Text.Split(new char[] { '\r', '\n' });
+                chart1.Series.Clear();
+                chart2.Series.Clear();
+                Series x1, x2, x3;
+                x1 = new Series("Sensor1");
+                x2 = new Series("Sensor2");
+                x3 = new Series("Diff");
+                int count = 0;
+                for (int i = 0; i < sp_line.Length; i++)
+                {
+                    try
+                    {
+                        string[] line = sp_line[i].Split(new char[] { ',' });
+                        if (line.Length >= 3)
+                        {
+                            x1.Points.AddXY(count, double.Parse(line[0]));
+                            x2.Points.AddXY(count, double.Parse(line[1]));
+                            x3.Points.AddXY(count, double.Parse(line[2]));
+                            count++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                x1.Color = Color.Red;
+                x2.Color = Color.Blue;
+                x3.Color = Color.Green;
+                x1.ChartType = SeriesChartType.FastLine;
+                x2.ChartType = SeriesChartType.FastLine;
+                x3.ChartType = SeriesChartType.FastLine;
+                chart1.Series.Add(x1);
+                chart1.Series.Add(x2);
+                chart2.Series.Add(x3);
+                chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+                chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+                chart2.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+                chart2.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+                
             }
             catch (Exception ex)
             {
