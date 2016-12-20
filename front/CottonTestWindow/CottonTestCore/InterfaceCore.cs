@@ -295,18 +295,34 @@ namespace CottonTestCore
             Sensor s = new Sensor();
             while ((line = sr.ReadLine()) != null)
             {
+                if (line.Replace(" ", "") == "")//除去空行
+                    continue;
                 if (line[0] == '#')
                     continue;
                 else if (line[0] == '@')
                 {
                     s = new Sensor();
-                    s.sensor_num = int.Parse(line.Substring(1));
+                    try
+                    {
+                        s.sensor_num = int.Parse(line.Substring(1));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                     sensors.Add(s);
                 }
                 else
                 {
-                    string[] xy = line.Split(new char[] { ' ' });
-                    s.temperature_points.Add(new PointF(float.Parse(xy[0]), float.Parse(xy[1])));
+                    try
+                    {
+                        string[] xy = line.Split(new char[] { ' ' });
+                        s.temperature_points.Add(new PointF(float.Parse(xy[0]), float.Parse(xy[1])));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
             }
             sr.Close();
