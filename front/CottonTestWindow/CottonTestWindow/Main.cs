@@ -67,12 +67,16 @@ namespace CottonTestWindow
                 {
                     TimerData.Enabled = true;
                     TimerTemperature.Enabled = true;
+                    TextRevserved1.ReadOnly = true;
+                    TextRevserved2.ReadOnly = true;
                     ButtonStartStop.Text = "停止";
                 }
                 else
                 {
                     TimerData.Enabled = false;
                     TimerTemperature.Enabled = false;
+                    TextRevserved1.ReadOnly = false;
+                    TextRevserved2.ReadOnly = false;
                     ButtonStartStop.Text = "开始";
                 }
             }
