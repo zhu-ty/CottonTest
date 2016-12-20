@@ -336,10 +336,13 @@ namespace CottonTestWindow
                 g.CompositingQuality = CompositingQuality.HighQuality;
                 g.CopyFromScreen(this.Left, this.Top, 0, 0, new Size(this.Width, this.Height));
                 bit.Save(str_dir + "/window_" + DateTime.Now.ToString("yy_MM_dd_hh_mm_ss") + ".png");
+                InfoForm infoform = new InfoForm(str_dir);
+                infoform.ShowDialog();
                 if (temperature_calibration)
                 {
                     System.IO.File.Copy(cali_file, str_dir + "/" + Path.GetFileName(cali_file), true);
                 }
+                Console.WriteLine("实验信息已经保存到" + str_dir);
             }
             catch (Exception ex)
             {
