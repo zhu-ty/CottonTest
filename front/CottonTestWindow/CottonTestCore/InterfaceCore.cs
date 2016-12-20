@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing.Drawing2D;
+using System.Drawing;
+using System.IO;
 
 namespace CottonTestCore
 {
@@ -100,6 +103,77 @@ namespace CottonTestCore
                 return ret;
             }
 
+            //TODO:利用电压关系直线计算
+
+            public static List<double> cal_line(List<PointF> pts)
+            {
+                List<double> ret = new List<double>();
+                double[] xs = new double[pts.Count];
+                double[] ys = new double[pts.Count];
+                for (int i = 0; i < pts.Count; i++)
+                {
+                    xs[i] = pts[i].X;
+                    ys[i] = pts[i].Y;
+                }
+                var auto_line_para = LeastSquare.MultiLine(xs, ys, pts.Count, 1);
+                ret.Add(auto_line_para[0]);
+                ret.Add(auto_line_para[1]);
+                return ret;
+            }
+
+            /// <summary>
+            /// 根据拟合直线确定电压值，规定x轴为电压，y轴为AD输出
+            /// AD_output = para[0] + para[1] * voltage
+            /// </summary>
+            /// <param name="ad_output"></param>
+            /// <param name="para"></param>
+            /// <param name="METHOD"></param>
+            /// <param name="R1"></param>
+            /// <param name="R2"></param>
+            /// <param name="R3"></param>
+            /// <returns></returns>
+            public static double cal_vol_by_pts(long ad_output, List<double> para)
+            {
+                double vol = ((double)ad_output - para[0]) / para[1];
+                return vol;
+            }
+
+            /// <summary>
+            /// 根据拟合直线确定温度值，规定x轴为电压，y轴为AD输出
+            /// AD_output = para[0] + para[1] * voltage
+            /// </summary>
+            /// <param name="ad_output"></param>
+            /// <param name="para"></param>
+            /// <param name="METHOD"></param>
+            /// <param name="R1"></param>
+            /// <param name="R2"></param>
+            /// <param name="R3"></param>
+            /// <returns></returns>
+            public static double cal_by_pts(long ad_output, List<double> para, string METHOD = "poly3", double R1 = 10)
+            {
+                double vol = cal_vol_by_pts(ad_output, para);
+                double v_rxr1 = vol;
+                double rx = R1 * (VREF_R / v_rxr1 - 1);
+                double ret;
+                if (METHOD == "linear")
+                    ret = LINEAR.calx(rx * 1000);
+                else
+                    ret = POLY3.calx(rx * 1000);
+                return ret;
+            }
+
+            public static long cal_inv_by_pts(double temperature, List<double> para, string METHOD = "poly3", double R1 = 10)
+            {
+                double rx;
+                if (METHOD == "linear")
+                    rx = LINEAR.caly(temperature) / 1000;
+                else
+                    rx = POLY3.caly(temperature) / 1000;
+                double v_rxr1 = VREF_R * R1 / (rx + R1);
+                long ret = (long)(para[0] + para[1] * v_rxr1);
+                return ret;
+            }
+
             public static long cal_inv(double temperature, double RW = 100, string METHOD = "poly3",
                 double R1 = 10, double R2 = 10, double R3 = 10)
             {
@@ -122,7 +196,7 @@ namespace CottonTestCore
         }
         public static class PHOTODIODE
         {
-            public const double VREF_AD = 3.3;
+            public const double VREF_AD = 3.0;
             public const double VREF_R = 5;
 
             public const long AD_MAX = (1 << 12) - 1;
@@ -150,6 +224,16 @@ namespace CottonTestCore
         }
 
         /// <summary>
+        /// include its number and its points
+        /// </summary>
+        public class Sensor
+        {
+            public int sensor_num = -1;
+            public List<PointF> temperature_points = new List<PointF>();
+            public List<double> temperature_paras = new List<double>();
+        }
+
+        /// <summary>
         /// 获取当前连接状态
         /// </summary>
         public bool connected
@@ -164,6 +248,77 @@ namespace CottonTestCore
         /// 是否打印从服务器收到的数据
         /// </summary>
         public bool print_received = true;
+
+        /// <summary>
+        /// 在当前目录下生成样例温度传感器标定配置文件
+        /// </summary>
+        public void generate_sample_config()
+        {
+            string str_dir = System.Environment.CurrentDirectory + "/config";
+            if (Directory.Exists(str_dir) == false)//如果不存在就创建file文件夹
+            {
+                Directory.CreateDirectory(str_dir);
+            }
+            FileStream fs = new FileStream(str_dir + "/config_sample.txt", FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            //开始写入
+            sw.WriteLine("#这是一个样例温度传感器标定配置文件");
+            sw.WriteLine("#使用\"#\"符号作为备注和注释信息，该行信息不会被解读");
+            sw.WriteLine("#使用@符号标明传感器的编号，@符号后的数字将作为传感器编号起点");
+            sw.WriteLine("#传感器的编号后紧跟2个或更多的X、Y点标定信息，每行的X、Y用空格隔开，X为R1RX点电压，Y为AD输出");
+            sw.WriteLine("#下面是一个样例");
+            sw.WriteLine("@1");
+            sw.WriteLine("0.25 365");
+            sw.WriteLine("0.33 456");
+            sw.WriteLine("0.54 765");
+            sw.WriteLine("@2");
+            sw.WriteLine("0.82 214");
+            sw.WriteLine("0.54 421");
+            sw.WriteLine("@3");
+            sw.WriteLine("0.11 46");
+            sw.WriteLine("#虽然AD输出一般为整数，但这两个数均是作为float处理的，因此也可以是非整数");
+            sw.WriteLine("0.13 49.2");
+            //清空缓冲区
+            sw.Flush();
+            //关闭流
+            sw.Close();
+            fs.Close();
+            Console.WriteLine("样例配置已经生成，请查看程序文件夹下的config文件夹");
+            return;
+        }
+
+        public void read_config(string file)
+        {
+            FileStream fs = new FileStream(file, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            string line;
+            Sensor s = new Sensor();
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (line[0] == '#')
+                    continue;
+                else if (line[0] == '@')
+                {
+                    s = new Sensor();
+                    s.sensor_num = int.Parse(line.Substring(1));
+                    sensors.Add(s);
+                }
+                else
+                {
+                    string[] xy = line.Split(new char[] { ' ' });
+                    s.temperature_points.Add(new PointF(float.Parse(xy[0]), float.Parse(xy[1])));
+                }
+            }
+            sr.Close();
+            fs.Close();
+            for (int i = 0; i < sensors.Count; i++)
+            {
+                if (sensors[i].temperature_points.Count < 2)
+                    throw new Exception("传感器（编号："+sensors[i].sensor_num.ToString()+"）没有足够的数据点");
+                sensors[i].temperature_paras = TEMPERATUE.cal_line(sensors[i].temperature_points);
+            }
+            return;
+        }
 
         /// <summary>
         /// 连接服务器
@@ -204,13 +359,24 @@ namespace CottonTestCore
         /// </summary>
         /// <param name="num">0,1</param>
         /// <returns></returns>
-        public double GetTemperature(int num)
+        public double GetTemperature(int num, int sensor_num = -1)
         {
             if (!connected)
                 throw new Exception("服务器未连接");
             uint address = 0xff71 + (uint)num;
             var re = WriteReadReg(address);
-            return TEMPERATUE.cal(BitConverter.ToUInt32(re.data, 8));
+            if (sensor_num == -1)
+                return TEMPERATUE.cal(BitConverter.ToUInt32(re.data, 8));
+            else
+            {
+                var sensor = sensors.Find(delegate (Sensor s)
+                {
+                    return s.sensor_num == sensor_num;
+                });
+                if (sensor == null)
+                    throw new Exception("未找到指定编号的Sensor");
+                return TEMPERATUE.cal_by_pts(BitConverter.ToUInt32(re.data, 8), sensor.temperature_paras);
+            }
         }
 
         /// <summary>
@@ -395,6 +561,7 @@ namespace CottonTestCore
         }
 
         Client c = new Client();
+        List<Sensor> sensors = new List<Sensor>();
         void print_rev(Client.ReceiveEventArgs arg)
         {
             if (print_received)

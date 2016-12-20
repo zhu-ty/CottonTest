@@ -19,6 +19,7 @@ namespace CottonTestWindow
     {
         InterfaceCore core = new InterfaceCore();
         bool recording = false;
+        bool temperature_calibration = false;
         List<double>[] output = new List<double>[3];
         public CottonTestWindow()
         {
@@ -165,10 +166,20 @@ namespace CottonTestWindow
         {
             try
             {
-                double val = core.GetTemperature(0);
-                TextTemp1.Text = Math.Round(val, 2).ToString();
-                val = core.GetTemperature(1);
-                TextTemp2.Text = Math.Round(val, 2).ToString();
+                if (temperature_calibration)
+                {
+                    double val = core.GetTemperature(0, int.Parse(TextRevserved1.Text));
+                    TextTemp1.Text = Math.Round(val, 2).ToString();
+                    val = core.GetTemperature(1, int.Parse(TextRevserved2.Text));
+                    TextTemp2.Text = Math.Round(val, 2).ToString();
+                }
+                else
+                {
+                    double val = core.GetTemperature(0);
+                    TextTemp1.Text = Math.Round(val, 2).ToString();
+                    val = core.GetTemperature(1);
+                    TextTemp2.Text = Math.Round(val, 2).ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -180,10 +191,30 @@ namespace CottonTestWindow
         {
             try
             {
-                core.GetSetPeriod(true);
-                core.GetSetWidth(true);
-                ButtonRead1_Click(this, new EventArgs());
-                ButtonRead2_Click(this, new EventArgs());
+                try
+                {
+                    core.GetSetPeriod(true);
+                    core.GetSetWidth(true);
+                    ButtonRead1_Click(this, new EventArgs());
+                    ButtonRead2_Click(this, new EventArgs());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                openFileDialog1.Filter = "文本文件 (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog1.InitialDirectory = System.Environment.CurrentDirectory;
+                var res = openFileDialog1.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    core.read_config(openFileDialog1.FileName);
+                    temperature_calibration = true;
+                    Console.WriteLine("配置文件读取成功，将按照指定的传感器编号执行温度校正");
+                }
+                else
+                {
+                    Console.WriteLine("未选择温度校正配置文件，将按照正常计算流程估算温度");
+                }
             }
             catch (Exception ex)
             {
@@ -209,8 +240,6 @@ namespace CottonTestWindow
             {
                 Directory.CreateDirectory(str_dir);
             }
-
-
             bit.Save(str_dir+"/window_" +DateTime.Now.ToString("yy_MM_dd_hh_mm_ss")+".png");//默认保存格式为PNG，保存成jpg格式质量不是很好
         }
 
@@ -260,8 +289,16 @@ namespace CottonTestWindow
             {
                 for (int i = 0; i < output.Length; i++)
                 {
-                    var x = output[i].Sum() / output[i].Count;
-                    textBoxInfo.AppendText(Math.Round(x).ToString() + ",");
+                    if (output[i].Count == 0)
+                    {
+                        Console.WriteLine("按键时间太短或未收到任何数据，本次平均无效");
+                        textBoxInfo.AppendText("按键时间太短或未收到任何数据，本次平均无效\r\n");
+                    }
+                    else
+                    {
+                        var x = output[i].Sum() / output[i].Count;
+                        textBoxInfo.AppendText(Math.Round(x).ToString() + ",");
+                    }
                     output[i].Clear();
                 }
                 textBoxInfo.AppendText("\r\n");
@@ -277,11 +314,12 @@ namespace CottonTestWindow
         {
             try
             {
-                string str_dir = System.Environment.CurrentDirectory + "/data";
+                string str_dir = System.Environment.CurrentDirectory + "/data/"+ DateTime.Now.ToString("yy_MM_dd_hh_mm_ss");
                 if (Directory.Exists(str_dir) == false)//如果不存在就创建file文件夹
                 {
                     Directory.CreateDirectory(str_dir);
                 }
+
                 FileStream fs = new FileStream(str_dir + "/data_" + DateTime.Now.ToString("yy_MM_dd_hh_mm_ss") + ".csv", FileMode.Create);
                 StreamWriter sw = new StreamWriter(fs);
                 //开始写入
@@ -291,6 +329,11 @@ namespace CottonTestWindow
                 //关闭流
                 sw.Close();
                 fs.Close();
+                Bitmap bit = new Bitmap(this.Width, this.Height);
+                Graphics g = Graphics.FromImage(bit);
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.CopyFromScreen(this.Left, this.Top, 0, 0, new Size(this.Width, this.Height));
+                bit.Save(str_dir + "/window_" + DateTime.Now.ToString("yy_MM_dd_hh_mm_ss") + ".png");
             }
             catch (Exception ex)
             {
@@ -308,7 +351,7 @@ namespace CottonTestWindow
                 Series x1, x2, x3;
                 x1 = new Series("Sensor1");
                 x2 = new Series("Sensor2");
-                x3 = new Series("Diff");
+                x3 = new Series("Sensor1 - Sensor2");
                 int count = 0;
                 for (int i = 0; i < sp_line.Length; i++)
                 {
@@ -342,6 +385,18 @@ namespace CottonTestWindow
                 chart2.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
                 chart2.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
                 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                core.generate_sample_config();
             }
             catch (Exception ex)
             {

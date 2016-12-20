@@ -80,6 +80,8 @@ int main()
 	para->SetEnumValue("PixelFormat", PvPixelMono12);
 	para->SetIntegerValue("Height", 100);
 	para->SetIntegerValue("Width", 80);
+	para->SetIntegerValue("OffsetX", 0);
+	para->SetIntegerValue("OffsetY", 0);
 	mCamera->mSerial->SetRegValue(0, 0xff79, 100);
 	mCamera->mSerial->SetRegValue(0, 0xff80, 80);
 	mCamera->Start(0, 1);

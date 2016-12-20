@@ -55,6 +55,17 @@ namespace CottonTestCore
                         var rev = c.send_and_receive_sync(Client.byte_connect(to_send));
                         print_rev(rev);
                     }
+                    if (split[0] == "pt_test")
+                    {
+                        double[] x2 = new double[2];
+                        double[] y2 = new double[2];
+                        x2[0] = double.Parse(split[1]);
+                        x2[1] = double.Parse(split[2]);
+                        y2[0] = double.Parse(split[3]);
+                        y2[1] = double.Parse(split[4]);
+                        var lsret = LeastSquare.MultiLine(x2, y2, 2, 1);
+                        Console.WriteLine(lsret[0].ToString() + "  " + lsret[1].ToString());
+                    }
                 }
                 catch (Exception e)
                 {

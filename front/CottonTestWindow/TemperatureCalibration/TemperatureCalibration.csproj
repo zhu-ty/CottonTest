@@ -86,6 +86,16 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo Configuration : $(ConfigurationName)
+IF "$(ConfigurationName)"=="Release" (
+IF NOT EXIST $(ProjectDir)..\..\..\Release\TemperatureCalibration\ (
+MD $(ProjectDir)..\..\..\Release\TemperatureCalibration\
+)
+)
+IF "$(ConfigurationName)"=="Release" (copy $(ProjectDir)$(OutDir)CottonTestCore.dll $(ProjectDir)..\..\..\Release\TemperatureCalibration\)
+IF "$(ConfigurationName)"=="Release" (copy $(ProjectDir)$(OutDir)TemperatureCalibration.exe $(ProjectDir)..\..\..\Release\TemperatureCalibration\)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
