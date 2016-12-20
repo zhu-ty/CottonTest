@@ -20,6 +20,7 @@ namespace CottonTestWindow
         InterfaceCore core = new InterfaceCore();
         bool recording = false;
         bool temperature_calibration = false;
+        string cali_file = "";
         List<double>[] output = new List<double>[3];
         public CottonTestWindow()
         {
@@ -209,6 +210,7 @@ namespace CottonTestWindow
                 {
                     core.read_config(openFileDialog1.FileName);
                     temperature_calibration = true;
+                    cali_file = openFileDialog1.FileName;
                     Console.WriteLine("配置文件读取成功，将按照指定的传感器编号执行温度校正");
                 }
                 else
@@ -334,6 +336,10 @@ namespace CottonTestWindow
                 g.CompositingQuality = CompositingQuality.HighQuality;
                 g.CopyFromScreen(this.Left, this.Top, 0, 0, new Size(this.Width, this.Height));
                 bit.Save(str_dir + "/window_" + DateTime.Now.ToString("yy_MM_dd_hh_mm_ss") + ".png");
+                if (temperature_calibration)
+                {
+                    System.IO.File.Copy(cali_file, str_dir + "/" + Path.GetFileName(cali_file), true);
+                }
             }
             catch (Exception ex)
             {
