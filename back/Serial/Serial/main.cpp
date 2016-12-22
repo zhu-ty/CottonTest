@@ -78,12 +78,12 @@ int main()
 	}
 	auto para = mCamera->lDevice->GetParameters();
 	para->SetEnumValue("PixelFormat", PvPixelMono12);
-	para->SetIntegerValue("Height", 100);
-	para->SetIntegerValue("Width", 80);
+	para->SetIntegerValue("Height", DATA_HEIGHT);
+	para->SetIntegerValue("Width", DATA_WIDTH);
 	para->SetIntegerValue("OffsetX", 0);
 	para->SetIntegerValue("OffsetY", 0);
-	mCamera->mSerial->SetRegValue(0, 0xff79, 100);
-	mCamera->mSerial->SetRegValue(0, 0xff80, 80);
+	mCamera->mSerial->SetRegValue(0, 0xff79, DATA_HEIGHT);
+	mCamera->mSerial->SetRegValue(0, 0xff80, DATA_WIDTH);
 	mCamera->Start(0, 1);
 #endif
 #ifdef SERVER_MODE_ENABLE
@@ -115,7 +115,8 @@ int CapCallBack(PvImage* pData, void* pUserData)
 		printf("\n");
 	}
 	mMutex->lock();
-	uint real_avg = max(min(80 * 2 * 100 / RAW_DATA_LENTH, data_pack->avg),1);
+	uint real_avg = max(min(DATA_WIDTH * DATA_HEIGHT / (RAW_DATA_LENTH / 2), data_pack->avg),1);
+	data_pack->avg = real_avg;
 	mMutex->unlock();
 	unsigned char avg_ans[RAW_DATA_LENTH];
 
