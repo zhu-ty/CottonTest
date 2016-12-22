@@ -105,6 +105,9 @@
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button3 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button4 = new System.Windows.Forms.Button();
+            this.checkBoxCool2 = new System.Windows.Forms.CheckBox();
+            this.checkBoxCool1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -201,7 +204,7 @@
             this.TextRevserved1.Name = "TextRevserved1";
             this.TextRevserved1.Size = new System.Drawing.Size(130, 22);
             this.TextRevserved1.TabIndex = 10;
-            this.TextRevserved1.Text = "1";
+            this.TextRevserved1.Text = "2";
             // 
             // label7
             // 
@@ -219,7 +222,7 @@
             this.TextPWM1.Location = new System.Drawing.Point(530, 75);
             this.TextPWM1.Name = "TextPWM1";
             this.TextPWM1.ReadOnly = true;
-            this.TextPWM1.Size = new System.Drawing.Size(130, 22);
+            this.TextPWM1.Size = new System.Drawing.Size(42, 22);
             this.TextPWM1.TabIndex = 8;
             this.TextPWM1.Text = "不可控";
             // 
@@ -306,7 +309,7 @@
             this.TextRevserved2.Name = "TextRevserved2";
             this.TextRevserved2.Size = new System.Drawing.Size(130, 22);
             this.TextRevserved2.TabIndex = 22;
-            this.TextRevserved2.Text = "2";
+            this.TextRevserved2.Text = "3";
             // 
             // label9
             // 
@@ -324,7 +327,7 @@
             this.TextPWM2.Location = new System.Drawing.Point(529, 173);
             this.TextPWM2.Name = "TextPWM2";
             this.TextPWM2.ReadOnly = true;
-            this.TextPWM2.Size = new System.Drawing.Size(130, 22);
+            this.TextPWM2.Size = new System.Drawing.Size(43, 22);
             this.TextPWM2.TabIndex = 20;
             this.TextPWM2.Text = "不可控";
             // 
@@ -661,8 +664,6 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(350, 8);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 20);
@@ -835,11 +836,49 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button4.Location = new System.Drawing.Point(448, 480);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 69;
+            this.button4.Text = "清空";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // checkBoxCool2
+            // 
+            this.checkBoxCool2.AutoSize = true;
+            this.checkBoxCool2.Checked = true;
+            this.checkBoxCool2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxCool2.Location = new System.Drawing.Point(584, 175);
+            this.checkBoxCool2.Name = "checkBoxCool2";
+            this.checkBoxCool2.Size = new System.Drawing.Size(75, 20);
+            this.checkBoxCool2.TabIndex = 70;
+            this.checkBoxCool2.Text = "开启制冷";
+            this.checkBoxCool2.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxCool1
+            // 
+            this.checkBoxCool1.AutoSize = true;
+            this.checkBoxCool1.Checked = true;
+            this.checkBoxCool1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxCool1.Location = new System.Drawing.Point(578, 77);
+            this.checkBoxCool1.Name = "checkBoxCool1";
+            this.checkBoxCool1.Size = new System.Drawing.Size(75, 20);
+            this.checkBoxCool1.TabIndex = 71;
+            this.checkBoxCool1.Text = "开启制冷";
+            this.checkBoxCool1.UseVisualStyleBackColor = true;
+            // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 635);
+            this.Controls.Add(this.checkBoxCool1);
+            this.Controls.Add(this.checkBoxCool2);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
@@ -993,6 +1032,9 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.CheckBox checkBoxCool2;
+        private System.Windows.Forms.CheckBox checkBoxCool1;
     }
 }
 

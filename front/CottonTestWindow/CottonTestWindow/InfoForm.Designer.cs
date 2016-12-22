@@ -63,7 +63,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(82, 22);
             this.textBox2.TabIndex = 76;
-            this.textBox2.Text = "0";
             // 
             // label29
             // 
@@ -80,7 +79,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(82, 22);
             this.textBox1.TabIndex = 74;
-            this.textBox1.Text = "0";
             // 
             // label28
             // 
@@ -114,7 +112,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(82, 22);
             this.textBox4.TabIndex = 78;
-            this.textBox4.Text = "0";
+            this.textBox4.Text = "***";
             // 
             // label2
             // 
@@ -148,7 +146,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(82, 22);
             this.textBox6.TabIndex = 82;
-            this.textBox6.Text = "0";
+            this.textBox6.Text = "***";
             // 
             // label4
             // 
@@ -175,7 +173,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(265, 127);
             this.textBox7.TabIndex = 86;
-            this.textBox7.Text = "0";
+            this.textBox7.Text = "这个实验是为了检测……";
             // 
             // ButtonConnect
             // 

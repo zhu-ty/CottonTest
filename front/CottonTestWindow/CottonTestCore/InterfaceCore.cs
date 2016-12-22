@@ -429,10 +429,10 @@ namespace CottonTestCore
             uint address = 0xff75 + (uint)num;
             Client.ReceiveEventArgs re;
             if (set)
-                re = WriteReadReg(address, false, (uint)(open ? 1 : 0));
+                re = WriteReadReg(address, false, (uint)(open ? 0 : 1));
             else
                 re = WriteReadReg(address);
-            return (BitConverter.ToUInt32(re.data, 8) != 0);
+            return (BitConverter.ToUInt32(re.data, 8) == 0);
         }
 
         /// <summary>

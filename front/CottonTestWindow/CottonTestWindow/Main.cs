@@ -32,6 +32,7 @@ namespace CottonTestWindow
             numericUpDown2.Minimum = 0;
             progressBar1.Maximum = (int)InterfaceCore.PHOTODIODE.AD_MAX;
             progressBar2.Maximum = (int)InterfaceCore.PHOTODIODE.AD_MAX;
+            core.print_received = checkBox1.Checked;
             for (int i = 0; i < output.Length; i++)
             {
                 output[i] = new List<double>();
@@ -92,6 +93,7 @@ namespace CottonTestWindow
             {
                 //TextMulti1.Text = core.GetSetRisistor(0).ToString();
                 numericUpDown1.Value = core.GetSetRisistor(0);
+                checkBoxCool1.Checked = core.GetSetCooler(0);
             }
             catch (Exception ex)
             {
@@ -108,6 +110,7 @@ namespace CottonTestWindow
                 if (x > InterfaceCore.PHOTODIODE.AMP3_RL_STEP_MAX || x < 0)
                     throw new Exception("调节超过了16级level");
                 core.GetSetRisistor(0, true, x);
+                core.GetSetCooler(0, true, checkBoxCool1.Checked);
             }
             catch (Exception ex)
             {
@@ -121,6 +124,7 @@ namespace CottonTestWindow
             {
                 //TextMulti2.Text = core.GetSetRisistor(1).ToString();
                 numericUpDown2.Value = core.GetSetRisistor(1);
+                checkBoxCool2.Checked = core.GetSetCooler(1);
             }
             catch (Exception ex)
             {
@@ -137,6 +141,7 @@ namespace CottonTestWindow
                 if (x > InterfaceCore.PHOTODIODE.AMP3_RL_STEP_MAX || x < 0)
                     throw new Exception("调节超过了16级level");
                 core.GetSetRisistor(1, true, x);
+                core.GetSetCooler(1, true, checkBoxCool2.Checked);
             }
             catch (Exception ex)
             {
@@ -341,6 +346,8 @@ namespace CottonTestWindow
                 g.CopyFromScreen(this.Left, this.Top, 0, 0, new Size(this.Width, this.Height));
                 bit.Save(str_dir + "/window_" + DateTime.Now.ToString("yy_MM_dd_hh_mm_ss") + ".png");
                 InfoForm infoform = new InfoForm(str_dir);
+                if (temperature_calibration)
+                    infoform.set_num(TextRevserved1.Text, TextRevserved2.Text);
                 infoform.ShowDialog();
                 if (temperature_calibration)
                 {
@@ -371,7 +378,7 @@ namespace CottonTestWindow
                     try
                     {
                         string[] line = sp_line[i].Split(new char[] { ',' });
-                        if (line.Length >= 3)
+                        if (line.Length >= 3 && line[0].Length > 0 && line[1].Length > 0 && line[2].Length > 0)
                         {
                             x1.Points.AddXY(count, double.Parse(line[0]));
                             x2.Points.AddXY(count, double.Parse(line[1]));
@@ -414,6 +421,15 @@ namespace CottonTestWindow
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var re = MessageBox.Show("确定清空数据吗？", "清空确认", MessageBoxButtons.YesNo);
+            if (re == DialogResult.Yes)
+            {
+                textBoxInfo.Clear();
             }
         }
     }
