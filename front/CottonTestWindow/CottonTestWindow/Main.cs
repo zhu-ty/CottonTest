@@ -304,12 +304,17 @@ namespace CottonTestWindow
                     {
                         Console.WriteLine("按键时间太短或未收到任何数据，本次平均无效");
                         textBoxInfo.AppendText("按键时间太短或未收到任何数据，本次平均无效\r\n");
+                        break;
                     }
                     else
                     {
                         var x = output[i].Sum() / output[i].Count;
                         textBoxInfo.AppendText(Math.Round(x).ToString() + ",");
                     }
+                    
+                }
+                for (int i = 0; i < output.Length; i++)
+                {
                     output[i].Clear();
                 }
                 textBoxInfo.AppendText("\r\n");
