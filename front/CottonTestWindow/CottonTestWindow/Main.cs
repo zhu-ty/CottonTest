@@ -459,7 +459,13 @@ namespace CottonTestWindow
         public override void WriteLine(string value)
         {
             if (_textBox.IsHandleCreated)
-                _textBox.BeginInvoke(new ThreadStart(() => _textBox.AppendText(value + "\r\n")));
+                _textBox.BeginInvoke(new ThreadStart(() => {
+                    //if (_textBox.TextLength >= 2)
+                        //_textBox.Text = _textBox.Text.Substring(0, _textBox.TextLength - 2);
+
+                    _textBox.AppendText(value + "\r\n");
+                    //_textBox.AppendText("<-");
+                    }));
         }
 
         public override Encoding Encoding//这里要注意,重写wirte必须也要重写编码类型

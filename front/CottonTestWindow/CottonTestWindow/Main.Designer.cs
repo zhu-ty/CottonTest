@@ -35,7 +35,6 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.label1 = new System.Windows.Forms.Label();
             this.TextConsole = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,19 +59,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.Text12AD2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.TextTemp1 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.TextOut1 = new System.Windows.Forms.TextBox();
-            this.TextOut2 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.TextTemp2 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.TextOutdif = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.TextIP = new System.Windows.Forms.TextBox();
@@ -90,16 +76,12 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.buttonPrint = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label26 = new System.Windows.Forms.Label();
             this.textBoxAVG = new System.Windows.Forms.TextBox();
             this.button_avg_write = new System.Windows.Forms.Button();
             this.button_avg_read = new System.Windows.Forms.Button();
             this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -108,33 +90,40 @@
             this.button4 = new System.Windows.Forms.Button();
             this.checkBoxCool2 = new System.Windows.Forms.CheckBox();
             this.checkBoxCool1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.buttonPrint = new System.Windows.Forms.Button();
+            this.TextOutdif = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.TextOut2 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TextTemp2 = new System.Windows.Forms.TextBox();
+            this.TextOut1 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.TextTemp1 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "控制台输出";
-            // 
             // TextConsole
             // 
-            this.TextConsole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextConsole.Location = new System.Drawing.Point(12, 28);
+            this.TextConsole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextConsole.Location = new System.Drawing.Point(473, 358);
             this.TextConsole.MaxLength = 2147483647;
             this.TextConsole.Multiline = true;
             this.TextConsole.Name = "TextConsole";
             this.TextConsole.ReadOnly = true;
             this.TextConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextConsole.Size = new System.Drawing.Size(449, 427);
+            this.TextConsole.Size = new System.Drawing.Size(405, 94);
             this.TextConsole.TabIndex = 1;
             // 
             // label2
@@ -371,131 +360,6 @@
             this.label12.TabIndex = 16;
             this.label12.Text = "可变运放电阻等级";
             // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 458);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 16);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "实时输出显示";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(12, 510);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(32, 16);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "温度";
-            // 
-            // TextTemp1
-            // 
-            this.TextTemp1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TextTemp1.Location = new System.Drawing.Point(74, 507);
-            this.TextTemp1.Name = "TextTemp1";
-            this.TextTemp1.ReadOnly = true;
-            this.TextTemp1.Size = new System.Drawing.Size(130, 22);
-            this.TextTemp1.TabIndex = 28;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 484);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 16);
-            this.label15.TabIndex = 30;
-            this.label15.Text = "传感器1";
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 536);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(32, 16);
-            this.label16.TabIndex = 31;
-            this.label16.Text = "输出";
-            // 
-            // TextOut1
-            // 
-            this.TextOut1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TextOut1.Location = new System.Drawing.Point(74, 533);
-            this.TextOut1.Name = "TextOut1";
-            this.TextOut1.ReadOnly = true;
-            this.TextOut1.Size = new System.Drawing.Size(130, 22);
-            this.TextOut1.TabIndex = 32;
-            // 
-            // TextOut2
-            // 
-            this.TextOut2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TextOut2.Location = new System.Drawing.Point(291, 533);
-            this.TextOut2.Name = "TextOut2";
-            this.TextOut2.ReadOnly = true;
-            this.TextOut2.Size = new System.Drawing.Size(130, 22);
-            this.TextOut2.TabIndex = 37;
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(229, 536);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(32, 16);
-            this.label17.TabIndex = 36;
-            this.label17.Text = "输出";
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(229, 484);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(51, 16);
-            this.label18.TabIndex = 35;
-            this.label18.Text = "传感器2";
-            // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(229, 510);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(32, 16);
-            this.label19.TabIndex = 34;
-            this.label19.Text = "温度";
-            // 
-            // TextTemp2
-            // 
-            this.TextTemp2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TextTemp2.Location = new System.Drawing.Point(291, 507);
-            this.TextTemp2.Name = "TextTemp2";
-            this.TextTemp2.ReadOnly = true;
-            this.TextTemp2.Size = new System.Drawing.Size(130, 22);
-            this.TextTemp2.TabIndex = 33;
-            // 
-            // label20
-            // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(12, 605);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(68, 16);
-            this.label20.TabIndex = 38;
-            this.label20.Text = "传感器求差";
-            // 
-            // TextOutdif
-            // 
-            this.TextOutdif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TextOutdif.Location = new System.Drawing.Point(86, 602);
-            this.TextOutdif.Name = "TextOutdif";
-            this.TextOutdif.ReadOnly = true;
-            this.TextOutdif.Size = new System.Drawing.Size(130, 22);
-            this.TextOutdif.TabIndex = 39;
-            // 
             // label21
             // 
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -510,7 +374,7 @@
             // 
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(467, 253);
+            this.label22.Location = new System.Drawing.Point(497, 253);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(22, 16);
             this.label22.TabIndex = 42;
@@ -529,11 +393,11 @@
             // 
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(681, 253);
+            this.label23.Location = new System.Drawing.Point(706, 253);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(36, 16);
+            this.label23.Size = new System.Drawing.Size(32, 16);
             this.label23.TabIndex = 44;
-            this.label23.Text = "Port";
+            this.label23.Text = "端口";
             // 
             // TextPort
             // 
@@ -548,7 +412,7 @@
             // 
             this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(669, 282);
+            this.label24.Location = new System.Drawing.Point(670, 282);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(68, 16);
             this.label24.TabIndex = 48;
@@ -566,7 +430,7 @@
             // 
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(467, 282);
+            this.label25.Location = new System.Drawing.Point(491, 282);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(32, 16);
             this.label25.TabIndex = 46;
@@ -663,41 +527,15 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(350, 8);
+            this.checkBox1.Location = new System.Drawing.Point(765, 332);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 20);
             this.checkBox1.TabIndex = 54;
             this.checkBox1.Text = "打印收到的数据";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // buttonPrint
-            // 
-            this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonPrint.Location = new System.Drawing.Point(232, 602);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(75, 23);
-            this.buttonPrint.TabIndex = 55;
-            this.buttonPrint.Text = "截图";
-            this.buttonPrint.UseVisualStyleBackColor = true;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.progressBar1.Location = new System.Drawing.Point(74, 561);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(130, 23);
-            this.progressBar1.TabIndex = 56;
-            // 
-            // progressBar2
-            // 
-            this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.progressBar2.Location = new System.Drawing.Point(291, 561);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(130, 23);
-            this.progressBar2.TabIndex = 57;
             // 
             // label26
             // 
@@ -742,9 +580,9 @@
             // 
             // textBoxInfo
             // 
-            this.textBoxInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textBoxInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxInfo.Location = new System.Drawing.Point(530, 458);
+            this.textBoxInfo.Location = new System.Drawing.Point(73, 454);
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -754,32 +592,20 @@
             // 
             // label27
             // 
-            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(444, 461);
+            this.label27.Location = new System.Drawing.Point(11, 457);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(80, 16);
+            this.label27.Size = new System.Drawing.Size(56, 16);
             this.label27.TabIndex = 63;
-            this.label27.Text = "数据记录结果";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(313, 602);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 64;
-            this.button1.Text = "记录";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
-            this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button1_MouseUp);
+            this.label27.Text = "数据记录";
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(446, 602);
+            this.button2.Location = new System.Drawing.Point(16, 505);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(53, 23);
             this.button2.TabIndex = 65;
             this.button2.Text = "保存";
             this.button2.UseVisualStyleBackColor = true;
@@ -787,37 +613,40 @@
             // 
             // chart1
             // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(471, 336);
+            this.chart1.Location = new System.Drawing.Point(12, 31);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(188, 116);
+            this.chart1.Size = new System.Drawing.Size(450, 200);
             this.chart1.TabIndex = 66;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             chartArea2.Name = "ChartArea1";
             this.chart2.ChartAreas.Add(chartArea2);
             legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend2.Name = "Legend1";
             this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(672, 336);
+            this.chart2.Location = new System.Drawing.Point(12, 240);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(188, 116);
+            this.chart2.Size = new System.Drawing.Size(450, 200);
             this.chart2.TabIndex = 67;
             this.chart2.Text = "chart2";
             // 
@@ -839,9 +668,9 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button4.Location = new System.Drawing.Point(448, 480);
+            this.button4.Location = new System.Drawing.Point(16, 477);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(53, 23);
             this.button4.TabIndex = 69;
             this.button4.Text = "清空";
             this.button4.UseVisualStyleBackColor = true;
@@ -849,6 +678,7 @@
             // 
             // checkBoxCool2
             // 
+            this.checkBoxCool2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCool2.AutoSize = true;
             this.checkBoxCool2.Checked = true;
             this.checkBoxCool2.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -861,6 +691,7 @@
             // 
             // checkBoxCool1
             // 
+            this.checkBoxCool1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCool1.AutoSize = true;
             this.checkBoxCool1.Checked = true;
             this.checkBoxCool1.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -871,11 +702,202 @@
             this.checkBoxCool1.Text = "开启制冷";
             this.checkBoxCool1.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(470, 333);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "控制台输出";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(771, 605);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 88;
+            this.button1.Text = "记录";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
+            this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button1_MouseUp);
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar2.Location = new System.Drawing.Point(749, 564);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(130, 23);
+            this.progressBar2.TabIndex = 87;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(532, 564);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(130, 23);
+            this.progressBar1.TabIndex = 86;
+            // 
+            // buttonPrint
+            // 
+            this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPrint.Location = new System.Drawing.Point(690, 605);
+            this.buttonPrint.Name = "buttonPrint";
+            this.buttonPrint.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrint.TabIndex = 85;
+            this.buttonPrint.Text = "截图";
+            this.buttonPrint.UseVisualStyleBackColor = true;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            // 
+            // TextOutdif
+            // 
+            this.TextOutdif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextOutdif.Location = new System.Drawing.Point(544, 605);
+            this.TextOutdif.Name = "TextOutdif";
+            this.TextOutdif.ReadOnly = true;
+            this.TextOutdif.Size = new System.Drawing.Size(130, 22);
+            this.TextOutdif.TabIndex = 84;
+            // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(470, 608);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 16);
+            this.label20.TabIndex = 83;
+            this.label20.Text = "传感器求差";
+            // 
+            // TextOut2
+            // 
+            this.TextOut2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextOut2.Location = new System.Drawing.Point(749, 536);
+            this.TextOut2.Name = "TextOut2";
+            this.TextOut2.ReadOnly = true;
+            this.TextOut2.Size = new System.Drawing.Size(130, 22);
+            this.TextOut2.TabIndex = 82;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(687, 539);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 16);
+            this.label17.TabIndex = 81;
+            this.label17.Text = "输出";
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(687, 487);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(51, 16);
+            this.label18.TabIndex = 80;
+            this.label18.Text = "传感器2";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(687, 513);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(32, 16);
+            this.label19.TabIndex = 79;
+            this.label19.Text = "温度";
+            // 
+            // TextTemp2
+            // 
+            this.TextTemp2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextTemp2.Location = new System.Drawing.Point(749, 510);
+            this.TextTemp2.Name = "TextTemp2";
+            this.TextTemp2.ReadOnly = true;
+            this.TextTemp2.Size = new System.Drawing.Size(130, 22);
+            this.TextTemp2.TabIndex = 78;
+            // 
+            // TextOut1
+            // 
+            this.TextOut1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextOut1.Location = new System.Drawing.Point(532, 536);
+            this.TextOut1.Name = "TextOut1";
+            this.TextOut1.ReadOnly = true;
+            this.TextOut1.Size = new System.Drawing.Size(130, 22);
+            this.TextOut1.TabIndex = 77;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(470, 539);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(32, 16);
+            this.label16.TabIndex = 76;
+            this.label16.Text = "输出";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(470, 487);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 16);
+            this.label15.TabIndex = 75;
+            this.label15.Text = "传感器1";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(470, 513);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(32, 16);
+            this.label14.TabIndex = 74;
+            this.label14.Text = "温度";
+            // 
+            // TextTemp1
+            // 
+            this.TextTemp1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextTemp1.Location = new System.Drawing.Point(532, 510);
+            this.TextTemp1.Name = "TextTemp1";
+            this.TextTemp1.ReadOnly = true;
+            this.TextTemp1.Size = new System.Drawing.Size(130, 22);
+            this.TextTemp1.TabIndex = 73;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(470, 461);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 16);
+            this.label13.TabIndex = 72;
+            this.label13.Text = "实时输出显示";
+            // 
             // CottonTestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 635);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.buttonPrint);
+            this.Controls.Add(this.TextOutdif);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.TextOut2);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.TextTemp2);
+            this.Controls.Add(this.TextOut1);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.TextTemp1);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.checkBoxCool1);
             this.Controls.Add(this.checkBoxCool2);
             this.Controls.Add(this.button4);
@@ -883,16 +905,12 @@
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.textBoxInfo);
             this.Controls.Add(this.button_avg_read);
             this.Controls.Add(this.button_avg_write);
             this.Controls.Add(this.textBoxAVG);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.numericUpDown1);
@@ -908,19 +926,6 @@
             this.Controls.Add(this.label22);
             this.Controls.Add(this.TextIP);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.TextOutdif);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.TextOut2);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.TextTemp2);
-            this.Controls.Add(this.TextOut1);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.TextTemp1);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.ButtonReserverd2);
             this.Controls.Add(this.ButtonRead2);
             this.Controls.Add(this.ButtonWrite2);
@@ -961,8 +966,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TextConsole;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -987,19 +990,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox Text12AD2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox TextTemp1;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox TextOut1;
-        private System.Windows.Forms.TextBox TextOut2;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox TextTemp2;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox TextOutdif;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox TextIP;
@@ -1017,16 +1007,12 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button buttonPrint;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBoxAVG;
         private System.Windows.Forms.Button button_avg_write;
         private System.Windows.Forms.Button button_avg_read;
         private System.Windows.Forms.TextBox textBoxInfo;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
@@ -1035,6 +1021,24 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckBox checkBoxCool2;
         private System.Windows.Forms.CheckBox checkBoxCool1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button buttonPrint;
+        private System.Windows.Forms.TextBox TextOutdif;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox TextOut2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox TextTemp2;
+        private System.Windows.Forms.TextBox TextOut1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox TextTemp1;
+        private System.Windows.Forms.Label label13;
     }
 }
 
