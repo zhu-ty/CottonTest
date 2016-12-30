@@ -112,12 +112,12 @@
   <PropertyGroup>
     <PostBuildEvent>echo Configuration : $(ConfigurationName)
 IF "$(ConfigurationName)"=="Release" (
-IF NOT EXIST $(ProjectDir)..\..\..\Release\Client\ (
-MD $(ProjectDir)..\..\..\Release\Client\
+IF NOT EXIST $(ProjectDir)..\..\..\Release\Static\Client\ (
+MD $(ProjectDir)..\..\..\Release\Static\Client\
 )
 )
-IF "$(ConfigurationName)"=="Release" (copy $(ProjectDir)$(OutDir)CottonTestCore.dll $(ProjectDir)..\..\..\Release\Client\)
-IF "$(ConfigurationName)"=="Release" (copy $(ProjectDir)$(OutDir)CottonTestWindow.exe $(ProjectDir)..\..\..\Release\Client\)</PostBuildEvent>
+IF "$(ConfigurationName)"=="Release" (copy $(ProjectDir)$(OutDir)CottonTestCore.dll $(ProjectDir)..\..\..\Release\Static\Client\)
+IF "$(ConfigurationName)"=="Release" (copy $(ProjectDir)$(OutDir)CottonTestWindow.exe $(ProjectDir)..\..\..\Release\Static\Client\)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
